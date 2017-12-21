@@ -1,10 +1,12 @@
 ﻿using Grizzlist.Client.BackgroundActions;
 using Grizzlist.Client.Persistent;
+using Grizzlist.Client.Stats;
 using Grizzlist.Client.Tasks;
 using Grizzlist.Client.Tasks.BackgroundActions;
 using Grizzlist.Client.Tasks.Selectors;
 using Grizzlist.Logger;
 using Grizzlist.Persistent;
+using Grizzlist.Stats;
 using Grizzlist.Tasks;
 using System;
 using System.Collections.Generic;
@@ -163,6 +165,8 @@ namespace Grizzlist.Client
 
                 using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                     repository.Add(window.EditedTask);
+
+                StatsHelper.Update(StatsData.TaskCreated);
             }
         }
 
@@ -240,6 +244,9 @@ namespace Grizzlist.Client
 
                 using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                     repository.Update(selectedTask);
+
+                StatsHelper.Update(StatsData.TaskClosed);
+                StatsHelper.Update(StatsHelper.PriorityUpdate(selectedTask.Priority));
             }
         }
 
@@ -256,6 +263,8 @@ namespace Grizzlist.Client
 
                 using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                     repository.Update(selectedTask);
+
+                StatsHelper.Update(StatsData.TaskRemoved);
             }
         }
 
