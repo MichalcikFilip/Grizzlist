@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grizzlist", "Grizzlist\Grizzlist.csproj", "{08515D26-24CA-4DE6-8D74-03A865712077}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrizzlistLogger", "GrizzlistLogger\GrizzlistLogger.csproj", "{4AF455B2-9E95-42C9-AF03-7CDF2985B3E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrizzlistFileSystem", "GrizzlistFileSystem\GrizzlistFileSystem.csproj", "{7C9C4CE4-0F45-4BE4-B2F2-4D1789DAE7C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrizzlistClient", "GrizzlistClient\GrizzlistClient.csproj", "{D3A3A10C-0EE4-42E3-9CC0-476380D22065}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08515D26-24CA-4DE6-8D74-03A865712077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08515D26-24CA-4DE6-8D74-03A865712077}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08515D26-24CA-4DE6-8D74-03A865712077}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08515D26-24CA-4DE6-8D74-03A865712077}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AF455B2-9E95-42C9-AF03-7CDF2985B3E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AF455B2-9E95-42C9-AF03-7CDF2985B3E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AF455B2-9E95-42C9-AF03-7CDF2985B3E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AF455B2-9E95-42C9-AF03-7CDF2985B3E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C9C4CE4-0F45-4BE4-B2F2-4D1789DAE7C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C9C4CE4-0F45-4BE4-B2F2-4D1789DAE7C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C9C4CE4-0F45-4BE4-B2F2-4D1789DAE7C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C9C4CE4-0F45-4BE4-B2F2-4D1789DAE7C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3A3A10C-0EE4-42E3-9CC0-476380D22065}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3A3A10C-0EE4-42E3-9CC0-476380D22065}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3A3A10C-0EE4-42E3-9CC0-476380D22065}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3A3A10C-0EE4-42E3-9CC0-476380D22065}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {269F121A-2649-429A-A5F0-384136293310}
+	EndGlobalSection
+EndGlobal

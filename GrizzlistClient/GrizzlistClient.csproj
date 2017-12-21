@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D3A3A10C-0EE4-42E3-9CC0-476380D22065}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Grizzlist.Client</RootNamespace>
+    <AssemblyName>GrizzlistClient</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\grizzlist.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="BackgroundActions\ActionsCollection.cs" />
+    <Compile Include="BackgroundActions\BackgroundThread.cs" />
+    <Compile Include="BackgroundActions\BaseAction.cs" />
+    <Compile Include="BackgroundActions\IAction.cs" />
+    <Compile Include="Configure.cs" />
+    <Compile Include="Persistent\PersistentFactory.cs" />
+    <Compile Include="Tasks\BackgroundActions\DeadlineIconsAction.cs" />
+    <Compile Include="Tasks\BackgroundActions\TaskControlBackgroundAction.cs" />
+    <Compile Include="Tasks\EditSubTaskWindow.xaml.cs">
+      <DependentUpon>EditSubTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\EditTaskWindow.xaml.cs">
+      <DependentUpon>EditTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\ITaskControlOrderSelectors.cs" />
+    <Compile Include="Tasks\Selectors\ClosedSelector.cs" />
+    <Compile Include="Tasks\Selectors\DeadlineIconsSelector.cs" />
+    <Compile Include="Tasks\Selectors\DeadlineSelector.cs" />
+    <Compile Include="Tasks\Selectors\IBackgroundSelector.cs" />
+    <Compile Include="Tasks\Selectors\IGroupIconsSelector.cs" />
+    <Compile Include="Tasks\Selectors\IStringSelector.cs" />
+    <Compile Include="Tasks\Selectors\IBoolSelector.cs" />
+    <Compile Include="Tasks\Selectors\OpenTaskBackgroundSelector.cs" />
+    <Compile Include="Tasks\Selectors\SimpleBoolSelector.cs" />
+    <Compile Include="Tasks\Selectors\TaskBackgroundSelector.cs" />
+    <Compile Include="Tasks\TaskControl.xaml.cs">
+      <DependentUpon>TaskControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\TaskPriorityColors.cs" />
+    <Compile Include="Tasks\TasksGroupControl.xaml.cs">
+      <DependentUpon>TasksGroupControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Validators\DeadlineValidator.cs" />
+    <Compile Include="Tasks\ViewTaskWindow.xaml.cs">
+      <DependentUpon>ViewTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Validators\IValidator.cs" />
+    <Compile Include="Validators\ValidatableWindow.cs" />
+    <Compile Include="Validators\Validator.cs" />
+    <Compile Include="Validators\BasicValidators\EmptyStringValidator.cs" />
+    <Page Include="AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangelogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ChangelogWindow.xaml.cs">
+      <DependentUpon>ChangelogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\RoutedCommands.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Tasks\EditSubTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\EditTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\TaskControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\TasksGroupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\ViewTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Validators\ErrorStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GrizzlistFileSystem\GrizzlistFileSystem.csproj">
+      <Project>{7c9c4ce4-0f45-4be4-b2f2-4d1789dae7c3}</Project>
+      <Name>GrizzlistFileSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GrizzlistLogger\GrizzlistLogger.csproj">
+      <Project>{4af455b2-9e95-42c9-af03-7cdf2985b3e3}</Project>
+      <Name>GrizzlistLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Grizzlist\Grizzlist.csproj">
+      <Project>{08515d26-24ca-4de6-8d74-03a865712077}</Project>
+      <Name>Grizzlist</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\grizzlist.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\closeApp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\notifications.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\show.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\stats.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\templates.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\addSubtask_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\edit_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\remove_24_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\delete_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\arrowBottom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\arrowRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\list_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\warning_24_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\warning_24_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\completed_24_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\rec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\recActive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\drawing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\note.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\noteOpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\noteArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\noteBackground.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

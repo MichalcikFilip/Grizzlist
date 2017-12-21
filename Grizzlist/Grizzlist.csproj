@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{08515D26-24CA-4DE6-8D74-03A865712077}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Grizzlist</RootNamespace>
+    <AssemblyName>Grizzlist</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\DateTimeExtension.cs" />
+    <Compile Include="Notifications\INotifiable.cs" />
+    <Compile Include="Notifications\Notification.cs" />
+    <Compile Include="Notifications\NotificationManager.cs" />
+    <Compile Include="Notifications\NotificationType.cs" />
+    <Compile Include="Persistent\IPersistentContext.cs" />
+    <Compile Include="Persistent\IPersistentEntity.cs" />
+    <Compile Include="Persistent\IRepository.cs" />
+    <Compile Include="Persistent\PersistentEntity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Records\BaseRecord.cs" />
+    <Compile Include="Records\Group.cs" />
+    <Compile Include="Records\LinkRecord.cs" />
+    <Compile Include="Records\NoteRecord.cs" />
+    <Compile Include="Records\PasswordRecord.cs" />
+    <Compile Include="Stats\StatsData.cs" />
+    <Compile Include="Stats\StatsManager.cs" />
+    <Compile Include="Tasks\Templates\Condition.cs" />
+    <Compile Include="Tasks\Templates\ConditionOperator.cs" />
+    <Compile Include="Tasks\Templates\ConditionOperatorType.cs" />
+    <Compile Include="Tasks\Templates\ConditionValue.cs" />
+    <Compile Include="Tasks\Templates\ConditionValueType.cs" />
+    <Compile Include="Tasks\Templates\ICondition.cs" />
+    <Compile Include="Tasks\Templates\Template.cs" />
+    <Compile Include="Tasks\Types\Activity.cs" />
+    <Compile Include="Tasks\Types\Attachment.cs" />
+    <Compile Include="Tasks\BaseTask.cs" />
+    <Compile Include="Tasks\Types\Drawing.cs" />
+    <Compile Include="Tasks\SubTask.cs" />
+    <Compile Include="Tasks\Types\Tag.cs" />
+    <Compile Include="Tasks\Task.cs" />
+    <Compile Include="Tasks\TaskPriority.cs" />
+    <Compile Include="Tasks\TaskState.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7C9C4CE4-0F45-4BE4-B2F2-4D1789DAE7C3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Grizzlist.FileSystem</RootNamespace>
+    <AssemblyName>GrizzlistFileSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Persistent\IConvertible.cs" />
+    <Compile Include="Persistent\IIncrementalKey.cs" />
+    <Compile Include="Persistent\LongIncrementalKey.cs" />
+    <Compile Include="Persistent\Notifications\PersistentNotification.cs" />
+    <Compile Include="Persistent\PersistentEntity.cs" />
+    <Compile Include="Persistent\Records\PersistentBaseRecord.cs" />
+    <Compile Include="Persistent\Records\PersistentGroup.cs" />
+    <Compile Include="Persistent\Records\PersistentLinkRecord.cs" />
+    <Compile Include="Persistent\Records\PersistentNoteRecord.cs" />
+    <Compile Include="Persistent\Records\PersistentPasswordRecord.cs" />
+    <Compile Include="Persistent\Stats\PersistentStatsData.cs" />
+    <Compile Include="Persistent\Stats\PersistentStatsManager.cs" />
+    <Compile Include="FileSystemContext.cs" />
+    <Compile Include="Persistent\Tasks\PersistentBaseTask.cs" />
+    <Compile Include="Persistent\Tasks\PersistentSubTask.cs" />
+    <Compile Include="Persistent\Tasks\PersistentTask.cs" />
+    <Compile Include="Persistent\Tasks\Templates\PersistentCondition.cs" />
+    <Compile Include="Persistent\Tasks\Templates\PersistentConditionOperator.cs" />
+    <Compile Include="Persistent\Tasks\Templates\PersistentConditionValue.cs" />
+    <Compile Include="Persistent\Tasks\Templates\PersistentTemplate.cs" />
+    <Compile Include="Persistent\Tasks\Types\PersistentActivity.cs" />
+    <Compile Include="Persistent\Tasks\Types\PersistentAttachment.cs" />
+    <Compile Include="Persistent\Tasks\Types\PersistentDrawing.cs" />
+    <Compile Include="Persistent\Tasks\Types\PersistentTag.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRespository.cs" />
+    <Compile Include="Repositories\DefaultRepository.cs" />
+    <Compile Include="Serialization\BaseSerializer.cs" />
+    <Compile Include="Serialization\DefaultSerializer.cs" />
+    <Compile Include="Serialization\ISerializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Grizzlist\Grizzlist.csproj">
+      <Project>{08515d26-24ca-4de6-8d74-03a865712077}</Project>
+      <Name>Grizzlist</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
