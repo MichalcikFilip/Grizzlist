@@ -1,0 +1,64 @@
+﻿<Window x:Class="Grizzlist.Client.Stats.StatsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Grizzlist.Client.Stats"
+        mc:Ignorable="d"
+        Title="Stats" WindowStartupLocation="CenterOwner" Height="310" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5" />
+            <RowDefinition Height="40" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="1" Margin="5 8" HorizontalAlignment="Right" Text="Time period" />
+        <ComboBox Grid.Column="1" Grid.Row="1" Margin="5 5 5 12" x:Name="cbPeriod" />
+        <ScrollViewer Grid.Row="2" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="170" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Margin="5 3" HorizontalAlignment="Right" Text="Tasks created" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" Margin="5 3" Text="0" x:Name="tbCreated" />
+                    <TextBlock Grid.Column="0" Grid.Row="1" Margin="5 3" HorizontalAlignment="Right" Text="Tasks created from template" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" Margin="5 3" Text="0" x:Name="tbFromTemplate" />
+                    <TextBlock Grid.Column="0" Grid.Row="2" Margin="5 3" HorizontalAlignment="Right" Text="Tasks closed" />
+                    <TextBlock Grid.Column="1" Grid.Row="2" Margin="5 3" Text="0" x:Name="tbClosed" />
+                    <TextBlock Grid.Column="0" Grid.Row="3" Margin="5 3" HorizontalAlignment="Right" Text="Tasks archivated" />
+                    <TextBlock Grid.Column="1" Grid.Row="3" Margin="5 3" Text="0" x:Name="tbArchived" />
+                    <TextBlock Grid.Column="0" Grid.Row="4" Margin="5 3" HorizontalAlignment="Right" Text="Tasks removed" />
+                    <TextBlock Grid.Column="1" Grid.Row="4" Margin="5 3" Text="0" x:Name="tbRemoved" />
+                    <TextBlock Grid.Column="0" Grid.Row="5" Margin="5 3" HorizontalAlignment="Right" Text="Very high priority tasks" />
+                    <TextBlock Grid.Column="1" Grid.Row="5" Margin="5 3" Text="0" x:Name="tbVeryHigh" />
+                    <TextBlock Grid.Column="0" Grid.Row="6" Margin="5 3" HorizontalAlignment="Right" Text="High priority tasks" />
+                    <TextBlock Grid.Column="1" Grid.Row="6" Margin="5 3" Text="0" x:Name="tbHigh" />
+                    <TextBlock Grid.Column="0" Grid.Row="7" Margin="5 3" HorizontalAlignment="Right" Text="Normal priority tasks" />
+                    <TextBlock Grid.Column="1" Grid.Row="7" Margin="5 3" Text="0" x:Name="tbNormal" />
+                    <TextBlock Grid.Column="0" Grid.Row="8" Margin="5 3" HorizontalAlignment="Right" Text="Low priority tasks" />
+                    <TextBlock Grid.Column="1" Grid.Row="8" Margin="5 3" Text="0" x:Name="tbLow" />
+                    <TextBlock Grid.Column="0" Grid.Row="9" Margin="5 3" HorizontalAlignment="Right" Text="Very low priority tasks" />
+                    <TextBlock Grid.Column="1" Grid.Row="9" Margin="5 3" Text="0" x:Name="tbVeryLow" />
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

@@ -60,7 +60,7 @@
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="commands:RoutedCommands.OpenNotifications" Executed="CommandBinding_Executed" />
-        <CommandBinding Command="commands:RoutedCommands.OpenStats" Executed="CommandBinding_Executed" />
+        <CommandBinding Command="commands:RoutedCommands.OpenStats" Executed="Command_OpenStats" />
         <CommandBinding Command="commands:RoutedCommands.OpenSettings" Executed="CommandBinding_Executed" />
         <CommandBinding Command="commands:RoutedCommands.OpenChangelog" Executed="Command_OpenChangelog" />
         <CommandBinding Command="commands:RoutedCommands.OpenAboutApp" Executed="Command_AboutGrizzlist" />

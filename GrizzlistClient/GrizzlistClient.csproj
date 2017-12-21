@@ -80,6 +80,9 @@
     <Compile Include="Configure.cs" />
     <Compile Include="Persistent\PersistentFactory.cs" />
     <Compile Include="Stats\StatsHelper.cs" />
+    <Compile Include="Stats\StatsWindow.xaml.cs">
+      <DependentUpon>StatsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tasks\BackgroundActions\DeadlineIconsAction.cs" />
     <Compile Include="Tasks\BackgroundActions\TaskControlBackgroundAction.cs" />
     <Compile Include="Tasks\EditSubTaskWindow.xaml.cs">
@@ -141,6 +144,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Stats\StatsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Tasks\EditSubTaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

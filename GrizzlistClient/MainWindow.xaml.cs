@@ -137,6 +137,12 @@ namespace Grizzlist.Client
             MessageBox.Show("cmd");
         }
 
+        private void Command_OpenStats(object sender, ExecutedRoutedEventArgs e)
+        {
+            deselect = false;
+            new StatsWindow(this).ShowDialog();
+        }
+
         private void Command_OpenChangelog(object sender, ExecutedRoutedEventArgs e)
         {
             deselect = false;
