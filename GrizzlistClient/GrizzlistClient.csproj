@@ -79,6 +79,7 @@
     <Compile Include="BackgroundActions\IAction.cs" />
     <Compile Include="Configure.cs" />
     <Compile Include="Persistent\PersistentFactory.cs" />
+    <Compile Include="Stats\StatsManager.cs" />
     <Compile Include="Tasks\BackgroundActions\DeadlineIconsAction.cs" />
     <Compile Include="Tasks\BackgroundActions\TaskControlBackgroundAction.cs" />
     <Compile Include="Tasks\EditSubTaskWindow.xaml.cs">
