@@ -1,10 +1,12 @@
 ﻿using Grizzlist.Client.BackgroundActions;
+using Grizzlist.Client.Notifications;
 using Grizzlist.Client.Persistent;
 using Grizzlist.Client.Stats;
 using Grizzlist.Client.Tasks;
 using Grizzlist.Client.Tasks.BackgroundActions;
 using Grizzlist.Client.Tasks.Selectors;
 using Grizzlist.Logger;
+using Grizzlist.Notifications;
 using Grizzlist.Persistent;
 using Grizzlist.Stats;
 using Grizzlist.Tasks;
@@ -92,9 +94,11 @@ namespace Grizzlist.Client
                     {
                         case TaskState.Open:
                             groupOpen.AddTask(task);
+                            ActionsCollection.Instance.Add(new TaskDeadlineAction(task));
                             break;
                         case TaskState.Postponed:
                             groupPostponed.AddTask(task);
+                            ActionsCollection.Instance.Add(new TaskDeadlineAction(task));
                             break;
                         case TaskState.Closed:
                             groupClosed.AddTask(task);
@@ -168,11 +172,13 @@ namespace Grizzlist.Client
             if (window.ShowDialog() ?? false)
             {
                 groupOpen.AddTask(window.EditedTask);
+                ActionsCollection.Instance.Add(new TaskDeadlineAction(window.EditedTask));
 
                 using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                     repository.Add(window.EditedTask);
 
                 StatsHelper.Update(StatsData.TaskCreated);
+                NotificationHelper.Notify(NotificationType.TaskCreated, window.EditedTask.Name);
             }
         }
 
@@ -200,6 +206,8 @@ namespace Grizzlist.Client
 
                     using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                         repository.Update(window.EditedTask);
+
+                    NotificationHelper.Notify(NotificationType.TaskUpdated, window.EditedTask.Name);
                 }
             }
         }
@@ -217,6 +225,8 @@ namespace Grizzlist.Client
 
                 using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                     repository.Update(selectedTask);
+
+                NotificationHelper.Notify(NotificationType.TaskOpened, selectedTask.Name);
             }
         }
 
@@ -233,6 +243,8 @@ namespace Grizzlist.Client
 
                 using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                     repository.Update(selectedTask);
+
+                NotificationHelper.Notify(NotificationType.TaskDeferred, selectedTask.Name);
             }
         }
 
@@ -247,12 +259,14 @@ namespace Grizzlist.Client
 
                 selectedGroup.RemoveTask(selectedTask);
                 groupClosed.AddTask(selectedTask);
+                ActionsCollection.Instance.Remove(ActionsCollection.Instance.Actions.OfType<TaskDeadlineAction>().FirstOrDefault(x => x.Task == selectedTask));
 
                 using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                     repository.Update(selectedTask);
 
                 StatsHelper.Update(StatsData.TaskClosed);
                 StatsHelper.Update(StatsHelper.PriorityUpdate(selectedTask.Priority));
+                NotificationHelper.Notify(NotificationType.TaskClosed, selectedTask.Name);
             }
         }
 
@@ -266,11 +280,13 @@ namespace Grizzlist.Client
                 selectedTask.State = TaskState.Removed;
 
                 selectedGroup.RemoveTask(selectedTask);
+                ActionsCollection.Instance.Remove(ActionsCollection.Instance.Actions.OfType<TaskDeadlineAction>().FirstOrDefault(x => x.Task == selectedTask));
 
                 using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                     repository.Update(selectedTask);
 
                 StatsHelper.Update(StatsData.TaskRemoved);
+                NotificationHelper.Notify(NotificationType.TaskRemoved, selectedTask.Name);
             }
         }
 

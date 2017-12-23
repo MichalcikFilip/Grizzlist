@@ -1,4 +1,5 @@
 ﻿using Grizzlist.Client.Persistent;
+using Grizzlist.Logger;
 using Grizzlist.Persistent;
 using Grizzlist.Stats;
 using Grizzlist.Tasks;
@@ -18,6 +19,8 @@ namespace Grizzlist.Client.Stats
                 {
                     manager = new StatsManager();
                     repository.Add(manager);
+
+                    Log.Debug("Stats manager created", null);
                 }
 
                 manager.Update(update);
