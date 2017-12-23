@@ -78,6 +78,7 @@
     <Compile Include="BackgroundActions\BaseAction.cs" />
     <Compile Include="BackgroundActions\IAction.cs" />
     <Compile Include="Configure.cs" />
+    <Compile Include="Notifications\NotificationHelper.cs" />
     <Compile Include="Persistent\PersistentFactory.cs" />
     <Compile Include="Stats\StatsHelper.cs" />
     <Compile Include="Stats\StatsWindow.xaml.cs">
@@ -306,5 +307,6 @@
   <ItemGroup>
     <Resource Include="Resources\noteBackground.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
