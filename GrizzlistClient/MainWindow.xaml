@@ -59,7 +59,7 @@
         </ControlTemplate>
     </Window.Resources>
     <Window.CommandBindings>
-        <CommandBinding Command="commands:RoutedCommands.OpenNotifications" Executed="CommandBinding_Executed" />
+        <CommandBinding Command="commands:RoutedCommands.OpenNotifications" Executed="Command_OpenNotifications" />
         <CommandBinding Command="commands:RoutedCommands.OpenStats" Executed="Command_OpenStats" />
         <CommandBinding Command="commands:RoutedCommands.OpenSettings" Executed="CommandBinding_Executed" />
         <CommandBinding Command="commands:RoutedCommands.OpenChangelog" Executed="Command_OpenChangelog" />

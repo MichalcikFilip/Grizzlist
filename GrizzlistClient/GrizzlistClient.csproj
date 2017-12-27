@@ -78,7 +78,11 @@
     <Compile Include="BackgroundActions\BaseAction.cs" />
     <Compile Include="BackgroundActions\IAction.cs" />
     <Compile Include="Configure.cs" />
+    <Compile Include="Extensions\ColorExtension.cs" />
     <Compile Include="Notifications\NotificationHelper.cs" />
+    <Compile Include="Notifications\NotificationsWindow.xaml.cs">
+      <DependentUpon>NotificationsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Persistent\PersistentFactory.cs" />
     <Compile Include="Stats\StatsHelper.cs" />
     <Compile Include="Stats\StatsWindow.xaml.cs">
@@ -146,6 +150,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Notifications\NotificationsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Stats\StatsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
