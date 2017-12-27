@@ -8,8 +8,8 @@
         Title="Changelog" Height="300" Width="300" WindowStartupLocation="CenterOwner">
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <TextBlock TextWrapping="Wrap" Margin="10 5">
-            <Bold>1.0 - 07/11/2017</Bold><LineBreak />
-            * First version released
+            <Bold>0.5b - 27/12/2017</Bold><LineBreak />
+            * First beta version released
         </TextBlock>
     </ScrollViewer>
 </Window>
