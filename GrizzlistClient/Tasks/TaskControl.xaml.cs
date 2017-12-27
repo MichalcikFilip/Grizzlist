@@ -1,5 +1,7 @@
-﻿using Grizzlist.Client.Persistent;
+﻿using Grizzlist.Client.Notifications;
+using Grizzlist.Client.Persistent;
 using Grizzlist.Client.Tasks.Selectors;
+using Grizzlist.Notifications;
 using Grizzlist.Persistent;
 using Grizzlist.Tasks;
 using Grizzlist.Tasks.Types;
@@ -34,13 +36,14 @@ namespace Grizzlist.Client.Tasks
 
             InitializeComponent();
             HideNote();
+
+            btnActivity.MouseLeftButtonDown += (sender, e) => ActivityClick(Task, btnActivity);
         }
 
         public void Update()
         {
             btnActivity.Visibility = ActivityVisibilitySelector?.Select() ?? false ? Visibility.Visible : Visibility.Collapsed;
             btnActivity.Source = new BitmapImage(new Uri(Task.IsActive ? "/Resources/recActive.png" : "/Resources/rec.png", UriKind.Relative));
-            btnActivity.MouseLeftButtonDown += (sender, e) => ActivityClick(Task, btnActivity);
 
             pnlPriority.Fill = new SolidColorBrush(TaskPriorityColors.GetColor(Task.Priority));
             tbName.Text = Task.Name;
@@ -144,11 +147,15 @@ namespace Grizzlist.Client.Tasks
             {
                 task.CloseActivity();
                 image.Source = new BitmapImage(new Uri("/Resources/rec.png", UriKind.Relative));
+
+                NotificationHelper.Notify(NotificationType.TaskActivityStopped, task.Name);
             }
             else
             {
                 task.StartActivity();
                 image.Source = new BitmapImage(new Uri("/Resources/recActive.png", UriKind.Relative));
+
+                NotificationHelper.Notify(NotificationType.TaskActivityStarted, task.Name);
             }
 
             using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())

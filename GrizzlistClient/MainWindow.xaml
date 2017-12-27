@@ -59,7 +59,7 @@
         </ControlTemplate>
     </Window.Resources>
     <Window.CommandBindings>
-        <CommandBinding Command="commands:RoutedCommands.OpenNotifications" Executed="CommandBinding_Executed" />
+        <CommandBinding Command="commands:RoutedCommands.OpenNotifications" Executed="Command_OpenNotifications" />
         <CommandBinding Command="commands:RoutedCommands.OpenStats" Executed="Command_OpenStats" />
         <CommandBinding Command="commands:RoutedCommands.OpenSettings" Executed="CommandBinding_Executed" />
         <CommandBinding Command="commands:RoutedCommands.OpenChangelog" Executed="Command_OpenChangelog" />
@@ -181,5 +181,6 @@
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Margin="0 10 0 0" MouseLeftButtonUp="Groups_MouseLeftButtonUp">
             <StackPanel Margin="5 0 5 5" x:Name="pnlGroups" />
         </ScrollViewer>
+        <StackPanel Grid.Row="2" VerticalAlignment="Bottom" x:Name="pnlNotifications" />
     </Grid>
 </Window>

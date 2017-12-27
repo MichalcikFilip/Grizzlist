@@ -1,17 +1,22 @@
 ﻿using Grizzlist.Client.BackgroundActions;
+using Grizzlist.Client.Extensions;
+using Grizzlist.Client.Notifications;
 using Grizzlist.Client.Persistent;
 using Grizzlist.Client.Stats;
 using Grizzlist.Client.Tasks;
 using Grizzlist.Client.Tasks.BackgroundActions;
 using Grizzlist.Client.Tasks.Selectors;
 using Grizzlist.Logger;
+using Grizzlist.Notifications;
 using Grizzlist.Persistent;
 using Grizzlist.Stats;
 using Grizzlist.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Timers;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -20,7 +25,7 @@ namespace Grizzlist.Client
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifiable
     {
         private List<TasksGroupControl> groups = new List<TasksGroupControl>();
 
@@ -34,6 +39,9 @@ namespace Grizzlist.Client
         public MainWindow()
         {
             InitializeComponent();
+
+            NotificationManager.Instance.Targets.Add(this);
+            Closing += (sender, e) => NotificationManager.Instance.Targets.Remove(this);
 
             groupOpen = new TasksGroupControl("Open tasks");
             groupPostponed = new TasksGroupControl("Postponed tasks");
@@ -84,9 +92,11 @@ namespace Grizzlist.Client
                     {
                         case TaskState.Open:
                             groupOpen.AddTask(task);
+                            ActionsCollection.Instance.Add(new TaskDeadlineAction(task));
                             break;
                         case TaskState.Postponed:
                             groupPostponed.AddTask(task);
+                            ActionsCollection.Instance.Add(new TaskDeadlineAction(task));
                             break;
                         case TaskState.Closed:
                             groupClosed.AddTask(task);
@@ -124,9 +134,26 @@ namespace Grizzlist.Client
                 SearchClick(sender, e);
         }
 
+        public void Notify(Notification notification)
+        {
+            Border notificationControl = new Border() { BorderThickness = new Thickness(1), BorderBrush = new SolidColorBrush(NotificationHelper.Colors[notification.Type]), Background = new SolidColorBrush(Colors.White), Margin = new Thickness(15, 5, 15, 5), Child = new TextBlock() { Background = new SolidColorBrush(NotificationHelper.Colors[notification.Type].SetAlpha(NotificationsWindow.NOTIFICATION_BACKGROUND_ALPHA)), Padding = new Thickness(6), Text = $"{notification.Created}{Environment.NewLine}{notification.FillMessage(NotificationHelper.Messages[notification.Type])}" } };
+            Timer hideNotification = new Timer(5000);
+
+            pnlNotifications.Children.Add(notificationControl);
+            hideNotification.Elapsed += (sender, e) => pnlNotifications.Dispatcher.BeginInvoke(new Action(() => pnlNotifications.Children.Remove(notificationControl)));
+
+            hideNotification.Start();
+        }
+
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             MessageBox.Show("cmd");
+        }
+
+        private void Command_OpenNotifications(object sender, ExecutedRoutedEventArgs e)
+        {
+            deselect = false;
+            new NotificationsWindow(this).ShowDialog();
         }
 
         private void Command_OpenStats(object sender, ExecutedRoutedEventArgs e)
@@ -160,11 +187,13 @@ namespace Grizzlist.Client
             if (window.ShowDialog() ?? false)
             {
                 groupOpen.AddTask(window.EditedTask);
+                ActionsCollection.Instance.Add(new TaskDeadlineAction(window.EditedTask));
 
                 using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                     repository.Add(window.EditedTask);
 
                 StatsHelper.Update(StatsData.TaskCreated);
+                NotificationHelper.Notify(NotificationType.TaskCreated, window.EditedTask.Name);
             }
         }
 
@@ -192,6 +221,8 @@ namespace Grizzlist.Client
 
                     using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                         repository.Update(window.EditedTask);
+
+                    NotificationHelper.Notify(NotificationType.TaskUpdated, window.EditedTask.Name);
                 }
             }
         }
@@ -209,6 +240,8 @@ namespace Grizzlist.Client
 
                 using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                     repository.Update(selectedTask);
+
+                NotificationHelper.Notify(NotificationType.TaskOpened, selectedTask.Name);
             }
         }
 
@@ -225,6 +258,8 @@ namespace Grizzlist.Client
 
                 using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                     repository.Update(selectedTask);
+
+                NotificationHelper.Notify(NotificationType.TaskDeferred, selectedTask.Name);
             }
         }
 
@@ -239,12 +274,14 @@ namespace Grizzlist.Client
 
                 selectedGroup.RemoveTask(selectedTask);
                 groupClosed.AddTask(selectedTask);
+                ActionsCollection.Instance.Remove(ActionsCollection.Instance.Actions.OfType<TaskDeadlineAction>().FirstOrDefault(x => x.Task == selectedTask));
 
                 using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                     repository.Update(selectedTask);
 
                 StatsHelper.Update(StatsData.TaskClosed);
                 StatsHelper.Update(StatsHelper.PriorityUpdate(selectedTask.Priority));
+                NotificationHelper.Notify(NotificationType.TaskClosed, selectedTask.Name);
             }
         }
 
@@ -258,11 +295,13 @@ namespace Grizzlist.Client
                 selectedTask.State = TaskState.Removed;
 
                 selectedGroup.RemoveTask(selectedTask);
+                ActionsCollection.Instance.Remove(ActionsCollection.Instance.Actions.OfType<TaskDeadlineAction>().FirstOrDefault(x => x.Task == selectedTask));
 
                 using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                     repository.Update(selectedTask);
 
                 StatsHelper.Update(StatsData.TaskRemoved);
+                NotificationHelper.Notify(NotificationType.TaskRemoved, selectedTask.Name);
             }
         }
 
