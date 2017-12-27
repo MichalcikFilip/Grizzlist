@@ -10,7 +10,6 @@ using Grizzlist.Stats;
 using Grizzlist.Tasks;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -34,13 +33,6 @@ namespace Grizzlist.Client
 
         public MainWindow()
         {
-            CultureInfo culture = new CultureInfo(9);
-
-            culture.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
-            culture.DateTimeFormat.LongTimePattern = "HH:mm:ss";
-
-            CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = culture;
-
             InitializeComponent();
 
             groupOpen = new TasksGroupControl("Open tasks");

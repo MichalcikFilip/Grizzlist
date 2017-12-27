@@ -1,6 +1,7 @@
 ﻿using Grizzlist.Client.Properties;
 using Grizzlist.Logger;
 using System;
+using System.Globalization;
 using System.Windows;
 
 namespace Grizzlist.Client
@@ -9,6 +10,13 @@ namespace Grizzlist.Client
     {
         public static void AppStart()
         {
+            CultureInfo culture = new CultureInfo(9);
+
+            culture.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
+            culture.DateTimeFormat.LongTimePattern = "HH:mm:ss";
+
+            CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = culture;
+
             try
             {
                 Log.Configure((LogLevel)Enum.Parse(typeof(LogLevel), Settings.Default.LogLevel), Settings.Default.LogDirectory, Settings.Default.LogFile);
