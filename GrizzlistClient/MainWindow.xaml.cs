@@ -1,4 +1,5 @@
 ﻿using Grizzlist.Client.BackgroundActions;
+using Grizzlist.Client.Extensions;
 using Grizzlist.Client.Notifications;
 using Grizzlist.Client.Persistent;
 using Grizzlist.Client.Stats;
@@ -14,7 +15,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Timers;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -23,7 +26,7 @@ namespace Grizzlist.Client
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifiable
     {
         private List<TasksGroupControl> groups = new List<TasksGroupControl>();
 
@@ -44,6 +47,9 @@ namespace Grizzlist.Client
             CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = culture;
 
             InitializeComponent();
+
+            NotificationManager.Instance.Targets.Add(this);
+            Closing += (sender, e) => NotificationManager.Instance.Targets.Remove(this);
 
             groupOpen = new TasksGroupControl("Open tasks");
             groupPostponed = new TasksGroupControl("Postponed tasks");
@@ -134,6 +140,17 @@ namespace Grizzlist.Client
         {
             if (e.Key == Key.Enter)
                 SearchClick(sender, e);
+        }
+
+        public void Notify(Notification notification)
+        {
+            Border notificationControl = new Border() { BorderThickness = new Thickness(1), BorderBrush = new SolidColorBrush(NotificationHelper.Colors[notification.Type]), Background = new SolidColorBrush(Colors.White), Margin = new Thickness(15, 5, 15, 5), Child = new TextBlock() { Background = new SolidColorBrush(NotificationHelper.Colors[notification.Type].SetAlpha(NotificationsWindow.NOTIFICATION_BACKGROUND_ALPHA)), Padding = new Thickness(6), Text = $"{notification.Created}{Environment.NewLine}{notification.FillMessage(NotificationHelper.Messages[notification.Type])}" } };
+            Timer hideNotification = new Timer(5000);
+
+            pnlNotifications.Children.Add(notificationControl);
+            hideNotification.Elapsed += (sender, e) => pnlNotifications.Dispatcher.BeginInvoke(new Action(() => pnlNotifications.Children.Remove(notificationControl)));
+
+            hideNotification.Start();
         }
 
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
