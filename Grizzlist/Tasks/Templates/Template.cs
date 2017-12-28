@@ -1,4 +1,5 @@
-﻿using Grizzlist.Persistent;
+﻿using Grizzlist.Extensions;
+using Grizzlist.Persistent;
 using System;
 
 namespace Grizzlist.Tasks.Templates
@@ -47,7 +48,7 @@ namespace Grizzlist.Tasks.Templates
                 Task task = Task.FromCopy(Task);
 
                 task.Created = task.Updated = date;
-                task.Deadline = date.AddDays(DaysToDeadline);
+                task.Deadline = date.GetDate().AddDays(DaysToDeadline);
                 task.State = TaskState.Open;
 
                 return task;

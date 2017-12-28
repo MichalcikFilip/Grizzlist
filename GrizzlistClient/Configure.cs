@@ -1,4 +1,5 @@
-﻿using Grizzlist.Client.Properties;
+﻿using Grizzlist.Client.Persistent;
+using Grizzlist.Client.Properties;
 using Grizzlist.Logger;
 using System;
 using System.Globalization;
@@ -28,6 +29,8 @@ namespace Grizzlist.Client
             }
 
             Log.Info("Grizzlist started", null);
+
+            PersistentFactory.ConfigureContext();
         }
     }
 }

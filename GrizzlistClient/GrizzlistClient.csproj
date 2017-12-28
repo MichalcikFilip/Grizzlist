@@ -77,6 +77,8 @@
       <DependentUpon>NotificationsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Persistent\PersistentFactory.cs" />
+    <Compile Include="UserSettings\BackgroundActions\LastRunAction.cs" />
+    <Compile Include="UserSettings\Settings.cs" />
     <Compile Include="Stats\StatsHelper.cs" />
     <Compile Include="Stats\StatsWindow.xaml.cs">
       <DependentUpon>StatsWindow.xaml</DependentUpon>
@@ -112,6 +114,7 @@
     <Compile Include="Tasks\ViewTaskWindow.xaml.cs">
       <DependentUpon>ViewTaskWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserSettings\SettingsFactory.cs" />
     <Compile Include="Validators\IValidator.cs" />
     <Compile Include="Validators\ValidatableWindow.cs" />
     <Compile Include="Validators\Validator.cs" />
