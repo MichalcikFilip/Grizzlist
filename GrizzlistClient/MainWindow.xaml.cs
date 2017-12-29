@@ -6,6 +6,8 @@ using Grizzlist.Client.Stats;
 using Grizzlist.Client.Tasks;
 using Grizzlist.Client.Tasks.BackgroundActions;
 using Grizzlist.Client.Tasks.Selectors;
+using Grizzlist.Client.Tasks.Templates.BackgroundActions;
+using Grizzlist.Client.UserSettings.BackgroundActions;
 using Grizzlist.Logger;
 using Grizzlist.Notifications;
 using Grizzlist.Persistent;
@@ -104,6 +106,9 @@ namespace Grizzlist.Client
                     }
                 }
             }
+
+            ActionsCollection.Instance.Add(new TemplatesAction());
+            ActionsCollection.Instance.Add(new LastRunAction());
 
             backgroundThread.Start();
             RefreshMenu();

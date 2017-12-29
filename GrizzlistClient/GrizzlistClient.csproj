@@ -77,6 +77,7 @@
       <DependentUpon>NotificationsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Persistent\PersistentFactory.cs" />
+    <Compile Include="Tasks\Templates\BackgroundActions\TemplatesAction.cs" />
     <Compile Include="UserSettings\BackgroundActions\LastRunAction.cs" />
     <Compile Include="UserSettings\Settings.cs" />
     <Compile Include="Stats\StatsHelper.cs" />

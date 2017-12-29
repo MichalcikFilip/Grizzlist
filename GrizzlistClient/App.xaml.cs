@@ -1,6 +1,4 @@
-﻿using Grizzlist.Client.BackgroundActions;
-using Grizzlist.Client.UserSettings.BackgroundActions;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Grizzlist.Client
 {
@@ -13,7 +11,6 @@ namespace Grizzlist.Client
         {
             base.OnStartup(e);
             Configure.AppStart();
-            ActionsCollection.Instance.Add(new LastRunAction());
         }
     }
 }
