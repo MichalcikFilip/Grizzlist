@@ -39,7 +39,7 @@ namespace Grizzlist.Client.Notifications
 
         private void AddNotification(Notification notification)
         {
-            pnlNotifications.Children.Insert(0, new Border() { BorderThickness = new Thickness(1), BorderBrush = new SolidColorBrush(NotificationHelper.Colors[notification.Type]), Background = new SolidColorBrush(NotificationHelper.Colors[notification.Type].SetAlpha(NOTIFICATION_BACKGROUND_ALPHA)), Margin = new Thickness(10, 5, 10, 5), Padding = new Thickness(6), Child = new TextBlock() { Text = $"{notification.Created}{Environment.NewLine}{notification.FillMessage(NotificationHelper.Messages[notification.Type])}" } });
+            pnlNotifications.Children.Insert(0, new Border() { BorderThickness = new Thickness(1), BorderBrush = new SolidColorBrush(NotificationHelper.Colors[notification.Type]), Background = new SolidColorBrush(NotificationHelper.Colors[notification.Type].SetAlpha(NOTIFICATION_BACKGROUND_ALPHA)), Margin = new Thickness(10, 5, 10, 5), Padding = new Thickness(6), Child = new TextBlock() { TextWrapping = TextWrapping.Wrap, Text = $"{notification.Created}{Environment.NewLine}{notification.FillMessage(NotificationHelper.Messages[notification.Type])}" } });
         }
     }
 }

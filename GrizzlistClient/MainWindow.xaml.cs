@@ -136,7 +136,7 @@ namespace Grizzlist.Client
 
         public void Notify(Notification notification)
         {
-            Border notificationControl = new Border() { BorderThickness = new Thickness(1), BorderBrush = new SolidColorBrush(NotificationHelper.Colors[notification.Type]), Background = new SolidColorBrush(Colors.White), Margin = new Thickness(15, 5, 15, 5), Child = new TextBlock() { Background = new SolidColorBrush(NotificationHelper.Colors[notification.Type].SetAlpha(NotificationsWindow.NOTIFICATION_BACKGROUND_ALPHA)), Padding = new Thickness(6), Text = $"{notification.Created}{Environment.NewLine}{notification.FillMessage(NotificationHelper.Messages[notification.Type])}" } };
+            Border notificationControl = new Border() { BorderThickness = new Thickness(1), BorderBrush = new SolidColorBrush(NotificationHelper.Colors[notification.Type]), Background = new SolidColorBrush(Colors.White), Margin = new Thickness(15, 5, 15, 5), Child = new TextBlock() { Background = new SolidColorBrush(NotificationHelper.Colors[notification.Type].SetAlpha(NotificationsWindow.NOTIFICATION_BACKGROUND_ALPHA)), Padding = new Thickness(6), TextWrapping = TextWrapping.Wrap, Text = notification.FillMessage(NotificationHelper.Messages[notification.Type]) } };
             Timer hideNotification = new Timer(5000);
 
             pnlNotifications.Children.Add(notificationControl);
