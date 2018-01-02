@@ -107,7 +107,26 @@ namespace Grizzlist.Client
                 }
             }
 
-            ActionsCollection.Instance.Add(new TemplatesAction());
+            TemplatesAction templatesAction = new TemplatesAction();
+
+            templatesAction.TaskCreated += task =>
+            {
+                if (task != null)
+                {
+                    groupOpen.AddTask(task);
+
+                    using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
+                        repository.Add(task);
+
+                    StatsHelper.Update(StatsData.TaskCreated);
+                    StatsHelper.Update(StatsData.TaskCreatedFromTemplate);
+                    NotificationHelper.Notify(NotificationType.TaskCreatedFromTemplate, task.Name);
+
+                    ActionsCollection.Instance.Add(new TaskDeadlineAction(task));
+                }
+            };
+
+            ActionsCollection.Instance.Add(templatesAction);
             ActionsCollection.Instance.Add(new LastRunAction());
 
             backgroundThread.Start();
