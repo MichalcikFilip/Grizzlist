@@ -147,7 +147,7 @@ namespace Grizzlist.Client
 
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            MessageBox.Show("cmd");
+            //MessageBox.Show("cmd");
         }
 
         private void Command_OpenNotifications(object sender, ExecutedRoutedEventArgs e)
