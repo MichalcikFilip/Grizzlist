@@ -187,13 +187,14 @@ namespace Grizzlist.Client
             if (window.ShowDialog() ?? false)
             {
                 groupOpen.AddTask(window.EditedTask);
-                ActionsCollection.Instance.Add(new TaskDeadlineAction(window.EditedTask));
 
                 using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                     repository.Add(window.EditedTask);
 
                 StatsHelper.Update(StatsData.TaskCreated);
                 NotificationHelper.Notify(NotificationType.TaskCreated, window.EditedTask.Name);
+
+                ActionsCollection.Instance.Add(new TaskDeadlineAction(window.EditedTask));
             }
         }
 
