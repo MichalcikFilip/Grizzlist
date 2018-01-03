@@ -96,7 +96,7 @@ namespace Grizzlist.Client.Tasks
 
         public void Search(string text)
         {
-            if (string.IsNullOrEmpty(text))
+            if (string.IsNullOrWhiteSpace(text))
             {
                 foreach (TaskControl task in tasks.Values)
                     task.Visibility = Visibility.Visible;
@@ -105,8 +105,10 @@ namespace Grizzlist.Client.Tasks
             }
             else
             {
+                text = text.Trim().ToLower();
+
                 foreach (TaskControl task in tasks.Values)
-                    task.Visibility = task.Task.Tags.Any(x => x.Value.Contains(text)) || task.Task.Name.Contains(text) || task.Task.Description.Contains(text) || task.Task.SubTasks.Any(x => x.Name.Contains(text) || x.Description.Contains(text)) ? Visibility.Visible : Visibility.Collapsed;
+                    task.Visibility = task.Task.Tags.Any(x => x.Value.ToLower().Contains(text)) || task.Task.Name.ToLower().Contains(text) || task.Task.Description.ToLower().Contains(text) || task.Task.SubTasks.Any(x => x.Name.ToLower().Contains(text) || x.Description.ToLower().Contains(text)) ? Visibility.Visible : Visibility.Collapsed;
 
                 Log.Debug($"Text {text} was searched in {tbName.Text} group", this);
             }

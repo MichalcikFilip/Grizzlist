@@ -114,12 +114,10 @@ namespace Grizzlist.Client
 
         private void SearchClick(object sender, RoutedEventArgs e)
         {
-            string text = tbSearch.Text.Trim();
-
-            groups.ForEach(x => x.Search(text));
+            groups.ForEach(x => x.Search(tbSearch.Text));
             RefreshMenu();
 
-            pnlSearch.BorderBrush = new SolidColorBrush(string.IsNullOrEmpty(text) ? Color.FromRgb(171, 173, 179) : Colors.Green);
+            pnlSearch.BorderBrush = new SolidColorBrush(string.IsNullOrWhiteSpace(tbSearch.Text) ? Color.FromRgb(171, 173, 179) : Colors.Green);
         }
 
         private void SearchClearClick(object sender, RoutedEventArgs e)
