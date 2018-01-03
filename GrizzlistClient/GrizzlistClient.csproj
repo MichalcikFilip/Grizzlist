@@ -82,7 +82,7 @@
       <DependentUpon>StatsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tasks\BackgroundActions\DeadlineIconsAction.cs" />
-    <Compile Include="Tasks\BackgroundActions\TaskControlBackgroundAction.cs" />
+    <Compile Include="Tasks\BackgroundActions\TaskControlAction.cs" />
     <Compile Include="Tasks\BackgroundActions\TaskDeadlineAction.cs" />
     <Compile Include="Tasks\EditSubTaskWindow.xaml.cs">
       <DependentUpon>EditSubTaskWindow.xaml</DependentUpon>

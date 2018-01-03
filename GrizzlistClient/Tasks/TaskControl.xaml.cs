@@ -47,7 +47,7 @@ namespace Grizzlist.Client.Tasks
 
             pnlPriority.Fill = new SolidColorBrush(TaskPriorityColors.GetColor(Task.Priority));
             tbName.Text = Task.Name;
-            tbDate.Text = DateSelector?.Select(Task) ?? string.Empty;
+            UpdateDate();
             tbDescription.Text = Task.Description;
 
             if (Task.SubTasks.Count == 0)
@@ -139,6 +139,11 @@ namespace Grizzlist.Client.Tasks
         public void UpdateBackground()
         {
             mainGrid.Background = new SolidColorBrush(BackgroundSelector?.Select(Task, IsSelected) ?? Colors.White);
+        }
+
+        public void UpdateDate()
+        {
+            tbDate.Text = DateSelector?.Select(Task) ?? string.Empty;
         }
 
         private void ActivityClick(BaseTask task, Image image)

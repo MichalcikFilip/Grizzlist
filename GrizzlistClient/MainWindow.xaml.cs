@@ -75,10 +75,10 @@ namespace Grizzlist.Client
             groupOpen.AddOrderSelector(x => x.Task.Deadline, false).AddOrderSelector(x => x.Task.Priority, true);
             groupPostponed.AddOrderSelector(x => x.Task.Deadline, false).AddOrderSelector(x => x.Task.Priority, true);
             groupClosed.AddOrderSelector(x => x.Task.Closed, true);
-            groupOpen.OnTaskControlCreated += t => ActionsCollection.Instance.Add(new TaskControlBackgroundAction(t));
-            groupPostponed.OnTaskControlCreated += t => ActionsCollection.Instance.Add(new TaskControlBackgroundAction(t));
-            groupOpen.OnTaskControlRemove += t => ActionsCollection.Instance.Remove(ActionsCollection.Instance.Actions.OfType<TaskControlBackgroundAction>().FirstOrDefault(x => x.TaskControl == t));
-            groupPostponed.OnTaskControlRemove += t => ActionsCollection.Instance.Remove(ActionsCollection.Instance.Actions.OfType<TaskControlBackgroundAction>().FirstOrDefault(x => x.TaskControl == t));
+            groupOpen.OnTaskControlCreated += t => ActionsCollection.Instance.Add(new TaskControlAction(t));
+            groupPostponed.OnTaskControlCreated += t => ActionsCollection.Instance.Add(new TaskControlAction(t));
+            groupOpen.OnTaskControlRemove += t => ActionsCollection.Instance.Remove(ActionsCollection.Instance.Actions.OfType<TaskControlAction>().FirstOrDefault(x => x.TaskControl == t));
+            groupPostponed.OnTaskControlRemove += t => ActionsCollection.Instance.Remove(ActionsCollection.Instance.Actions.OfType<TaskControlAction>().FirstOrDefault(x => x.TaskControl == t));
             groupOpen.Collapse(false);
 
             ActionsCollection.Instance.Add(new DeadlineIconsAction(groupOpen));
