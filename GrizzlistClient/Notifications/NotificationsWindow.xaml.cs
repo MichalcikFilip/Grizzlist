@@ -34,7 +34,7 @@ namespace Grizzlist.Client.Notifications
 
         public void Notify(Notification notification)
         {
-            AddNotification(notification);
+            Dispatcher.Invoke(() => AddNotification(notification));
         }
 
         private void AddNotification(Notification notification)
