@@ -1,4 +1,5 @@
 ﻿using Grizzlist.Client.BackgroundActions;
+using Grizzlist.Client.Collection;
 using Grizzlist.Client.Extensions;
 using Grizzlist.Client.Notifications;
 using Grizzlist.Client.Persistent;
@@ -327,6 +328,30 @@ namespace Grizzlist.Client
                 StatsHelper.Update(StatsData.TaskRemoved);
                 NotificationHelper.Notify(NotificationType.TaskRemoved, selectedTask.Name);
             }
+        }
+
+        private void Command_OpenTemplates(object sender, ExecutedRoutedEventArgs e)
+        {
+            deselect = false;
+            new CollectionWindow(this, "Templates").ShowDialog();
+        }
+
+        private void Command_OpenNotes(object sender, ExecutedRoutedEventArgs e)
+        {
+            deselect = false;
+            new CollectionWindow(this, "Notes").ShowDialog();
+        }
+
+        private void Command_OpenPasswords(object sender, ExecutedRoutedEventArgs e)
+        {
+            deselect = false;
+            new CollectionWindow(this, "Passwords").ShowDialog();
+        }
+
+        private void Command_OpenLinks(object sender, ExecutedRoutedEventArgs e)
+        {
+            deselect = false;
+            new CollectionWindow(this, "Links").ShowDialog();
         }
 
         private void RefreshMenu()

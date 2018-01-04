@@ -70,6 +70,10 @@
     <Compile Include="BackgroundActions\BackgroundThread.cs" />
     <Compile Include="BackgroundActions\BaseAction.cs" />
     <Compile Include="BackgroundActions\IAction.cs" />
+    <Compile Include="Collection\CollectionWindow.xaml.cs">
+      <DependentUpon>CollectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Collection\ICollectionControl.cs" />
     <Compile Include="Configure.cs" />
     <Compile Include="Extensions\ColorExtension.cs" />
     <Compile Include="Notifications\NotificationHelper.cs" />
@@ -125,6 +129,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChangelogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Collection\CollectionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
