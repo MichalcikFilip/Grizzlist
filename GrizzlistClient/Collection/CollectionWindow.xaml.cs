@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Grizzlist.Client.Collection
 {
@@ -19,13 +8,31 @@ namespace Grizzlist.Client.Collection
     /// </summary>
     public partial class CollectionWindow : Window
     {
-        public CollectionWindow(Window owner, string title)
+        private ICollectionManager manager;
+        private List<CollectionItem> items = new List<CollectionItem>();
+
+        public CollectionWindow(Window owner, string title, ICollectionManager collectionManager)
         {
             Owner = owner;
 
             InitializeComponent();
 
             Title = title;
+            manager = collectionManager;
+            pnlScroll.MouseLeftButtonUp += (sender, e) => Deselect();
+
+            foreach (CollectionItem item in manager.LoadItems())
+            {
+                item.Selected += () => Deselect();
+
+                pnlContent.Children.Add(item);
+                items.Add(item);
+            }
+        }
+
+        private void Deselect()
+        {
+            items.ForEach(x => x.Deselect());
         }
     }
 }

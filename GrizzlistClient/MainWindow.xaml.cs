@@ -7,6 +7,7 @@ using Grizzlist.Client.Stats;
 using Grizzlist.Client.Tasks;
 using Grizzlist.Client.Tasks.BackgroundActions;
 using Grizzlist.Client.Tasks.Selectors;
+using Grizzlist.Client.Tasks.Templates;
 using Grizzlist.Client.Tasks.Templates.BackgroundActions;
 using Grizzlist.Client.UserSettings.BackgroundActions;
 using Grizzlist.Logger;
@@ -333,25 +334,25 @@ namespace Grizzlist.Client
         private void Command_OpenTemplates(object sender, ExecutedRoutedEventArgs e)
         {
             deselect = false;
-            new CollectionWindow(this, "Templates").ShowDialog();
+            new CollectionWindow(this, "Templates", new TemplatesCollection()).ShowDialog();
         }
 
         private void Command_OpenNotes(object sender, ExecutedRoutedEventArgs e)
         {
             deselect = false;
-            new CollectionWindow(this, "Notes").ShowDialog();
+            //new CollectionWindow(this, "Notes", null).ShowDialog();
         }
 
         private void Command_OpenPasswords(object sender, ExecutedRoutedEventArgs e)
         {
             deselect = false;
-            new CollectionWindow(this, "Passwords").ShowDialog();
+            //new CollectionWindow(this, "Passwords", null).ShowDialog();
         }
 
         private void Command_OpenLinks(object sender, ExecutedRoutedEventArgs e)
         {
             deselect = false;
-            new CollectionWindow(this, "Links").ShowDialog();
+            //new CollectionWindow(this, "Links", null).ShowDialog();
         }
 
         private void RefreshMenu()

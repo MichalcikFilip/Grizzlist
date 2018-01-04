@@ -40,7 +40,7 @@
                 <Image Source="/Resources/remove_24_red.png" />
             </Button>
         </StackPanel>
-        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" x:Name="pnlScroll">
             <StackPanel x:Name="pnlContent" />
         </ScrollViewer>
     </Grid>

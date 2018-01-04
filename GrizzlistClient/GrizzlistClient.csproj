@@ -70,10 +70,13 @@
     <Compile Include="BackgroundActions\BackgroundThread.cs" />
     <Compile Include="BackgroundActions\BaseAction.cs" />
     <Compile Include="BackgroundActions\IAction.cs" />
+    <Compile Include="Collection\CollectionItem.xaml.cs">
+      <DependentUpon>CollectionItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Collection\CollectionWindow.xaml.cs">
       <DependentUpon>CollectionWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Collection\ICollectionControl.cs" />
+    <Compile Include="Collection\ICollectionManager.cs" />
     <Compile Include="Configure.cs" />
     <Compile Include="Extensions\ColorExtension.cs" />
     <Compile Include="Notifications\NotificationHelper.cs" />
@@ -82,6 +85,10 @@
     </Compile>
     <Compile Include="Persistent\PersistentFactory.cs" />
     <Compile Include="Tasks\Templates\BackgroundActions\TemplatesAction.cs" />
+    <Compile Include="Tasks\Templates\TemplateItem.xaml.cs">
+      <DependentUpon>TemplateItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Templates\TemplatesCollection.cs" />
     <Compile Include="UserSettings\BackgroundActions\LastRunAction.cs" />
     <Compile Include="UserSettings\Settings.cs" />
     <Compile Include="Stats\StatsHelper.cs" />
@@ -132,6 +139,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Collection\CollectionItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Collection\CollectionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -176,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tasks\TasksGroupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\Templates\TemplateItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
