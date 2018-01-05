@@ -34,5 +34,10 @@ namespace Grizzlist.Client.Collection
         {
             items.ForEach(x => x.Deselect());
         }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

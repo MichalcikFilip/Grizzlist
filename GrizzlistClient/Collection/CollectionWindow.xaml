@@ -30,7 +30,7 @@
             </Grid>
         </Border>
         <StackPanel Grid.Row="2" Margin="5 0" Orientation="Horizontal">
-            <Button Margin="5" Style="{DynamicResource ImageButton}" ToolTip="Add">
+            <Button Margin="5" Style="{DynamicResource ImageButton}" ToolTip="Add" Click="Add_Click">
                 <Image Source="/Resources/addSubtask_24.png" />
             </Button>
             <Button Margin="5" Style="{DynamicResource ImageButton}" ToolTip="Update">

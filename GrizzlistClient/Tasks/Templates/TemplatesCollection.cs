@@ -1,5 +1,9 @@
 ﻿using Grizzlist.Client.Collection;
+using Grizzlist.Client.Persistent;
+using Grizzlist.Persistent;
+using Grizzlist.Tasks.Templates;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Grizzlist.Client.Tasks.Templates
 {
@@ -7,7 +11,8 @@ namespace Grizzlist.Client.Tasks.Templates
     {
         public IEnumerable<CollectionItem> LoadItems()
         {
-            return new List<CollectionItem>() { new CollectionItem(new TemplateItem()), new CollectionItem(new TemplateItem()), new CollectionItem(new TemplateItem()) };
+            using (IRepository<Template, long> repository = PersistentFactory.GetContext().GetRepository<Template, long>())
+                return repository.GetAll().Select(x => new CollectionItem(new TemplateItem(x)));
         }
     }
 }
