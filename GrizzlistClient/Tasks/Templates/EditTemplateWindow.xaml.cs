@@ -31,9 +31,11 @@ namespace Grizzlist.Client.Tasks.Templates
                 cbPriority.Items.Insert(0, priority);
 
             cbPriority.SelectedItem = TaskPriority.Normal;
+            tbDaysToDeadline.Text = "0";
 
             AddValidator(new EmptyStringValidator(tbName));
             AddValidator(new EmptyStringValidator(tbDescription));
+            AddValidator(new RangeIntegerValidator(tbDaysToDeadline, 0, 30));
 
             if (template != null)
             {
@@ -43,6 +45,7 @@ namespace Grizzlist.Client.Tasks.Templates
                 tbNote.Text = template.Task.Note;
                 cbPriority.SelectedItem = template.Task.Priority;
                 tbTags.Text = string.Join(", ", template.Task.Tags.Select(x => x.Value));
+                tbDaysToDeadline.Text = template.DaysToDeadline.ToString();
 
                 foreach (SubTask subtask in template.Task.SubTasks)
                     AddSubtask(subtask);
@@ -124,10 +127,11 @@ namespace Grizzlist.Client.Tasks.Templates
                     EditedTemplate.Task.Priority = (TaskPriority)cbPriority.SelectedItem;
                     EditedTemplate.Task.SubTasks.Clear();
                     EditedTemplate.Task.Tags.Clear();
+                    EditedTemplate.DaysToDeadline = int.Parse(tbDaysToDeadline.Text);
                 }
                 else
                 {
-                    EditedTemplate = new Template { Task = new Task(tbName.Text, tbDescription.Text, tbNote.Text, (TaskPriority)cbPriority.SelectedItem, TaskState.Open, default(DateTime)) };
+                    EditedTemplate = new Template { Task = new Task(tbName.Text, tbDescription.Text, tbNote.Text, (TaskPriority)cbPriority.SelectedItem, TaskState.Open, default(DateTime)), DaysToDeadline = int.Parse(tbDaysToDeadline.Text) };
                 }
 
                 if (subtasks.Count > 0)
