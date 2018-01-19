@@ -14,16 +14,18 @@ namespace Grizzlist.Client.Collection
         public event Action Selected;
 
         public bool IsSelected { get; private set; }
+        public UIElement ItemContent { get; private set; }
 
         public CollectionItem(UIElement content)
         {
+            ItemContent = content;
             InitializeComponent();
-            mainGrid.Children.Add(content);
 
+            mainGrid.Children.Add(content);
             mainGrid.MouseLeftButtonUp += (sender, e) => e.Handled = true;
         }
 
-        private void mainGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void MainGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Selected?.Invoke();
 

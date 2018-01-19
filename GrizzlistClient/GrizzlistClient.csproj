@@ -85,6 +85,9 @@
     </Compile>
     <Compile Include="Persistent\PersistentFactory.cs" />
     <Compile Include="Tasks\Templates\BackgroundActions\TemplatesAction.cs" />
+    <Compile Include="Tasks\Templates\EditTemplateWindow.xaml.cs">
+      <DependentUpon>EditTemplateWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tasks\Templates\TemplateItem.xaml.cs">
       <DependentUpon>TemplateItem.xaml</DependentUpon>
     </Compile>
@@ -187,6 +190,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tasks\TasksGroupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\Templates\EditTemplateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
