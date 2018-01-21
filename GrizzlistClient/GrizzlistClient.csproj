@@ -85,9 +85,16 @@
     </Compile>
     <Compile Include="Persistent\PersistentFactory.cs" />
     <Compile Include="Tasks\Templates\BackgroundActions\TemplatesAction.cs" />
+    <Compile Include="Tasks\Templates\ConditionOperatorControl.xaml.cs">
+      <DependentUpon>ConditionOperatorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Templates\ConditionValueControl.xaml.cs">
+      <DependentUpon>ConditionValueControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tasks\Templates\EditTemplateWindow.xaml.cs">
       <DependentUpon>EditTemplateWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tasks\Templates\IConditionControl.cs" />
     <Compile Include="Tasks\Templates\TemplateItem.xaml.cs">
       <DependentUpon>TemplateItem.xaml</DependentUpon>
     </Compile>
@@ -133,6 +140,7 @@
     <Compile Include="Validators\BasicValidators\IntegerValidator.cs" />
     <Compile Include="Validators\BasicValidators\RangeIntegerValidator.cs" />
     <Compile Include="Validators\IValidator.cs" />
+    <Compile Include="Validators\ValidatableControl.cs" />
     <Compile Include="Validators\ValidatableWindow.cs" />
     <Compile Include="Validators\Validator.cs" />
     <Compile Include="Validators\BasicValidators\EmptyStringValidator.cs" />
@@ -192,6 +200,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tasks\TasksGroupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\Templates\ConditionOperatorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\Templates\ConditionValueControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

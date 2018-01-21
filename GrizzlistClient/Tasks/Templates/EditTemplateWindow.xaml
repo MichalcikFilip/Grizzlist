@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Grizzlist.Client.Tasks.Templates"
         mc:Ignorable="d"
-        Title="New Template" Height="500" Width="300" WindowStartupLocation="CenterOwner">
+        Title="New Template" Height="550" Width="300" WindowStartupLocation="CenterOwner">
     <TabControl>
         <TabItem Header="Task">
             <Grid>
