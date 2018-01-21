@@ -13,7 +13,7 @@ namespace Grizzlist.FileSystem.Persistent.Tasks.Templates
 
         public Template Convert()
         {
-            return new Template(LastCreated) { ID = ID, Task = Task.Convert(), Condition = Condition.Convert(), DaysToDeadline = DaysToDeadline };
+            return new Template(LastCreated) { ID = ID, Task = Task.Convert(), Condition = Condition?.Convert(), DaysToDeadline = DaysToDeadline };
         }
 
         public PersistentTemplate Convert(Template entity)
@@ -23,8 +23,9 @@ namespace Grizzlist.FileSystem.Persistent.Tasks.Templates
                 ID = entity.ID;
                 LastCreated = entity.LastCreated;
                 Task = new PersistentTask().Convert(entity.Task);
-                Condition = entity.Condition is ConditionOperator ? new PersistentConditionOperator().Convert((Condition)entity.Condition) : new PersistentConditionValue().Convert((Condition)entity.Condition);
                 DaysToDeadline = entity.DaysToDeadline;
+                if (entity.Condition != null)
+                    Condition = entity.Condition is ConditionOperator ? new PersistentConditionOperator().Convert((Condition)entity.Condition) : new PersistentConditionValue().Convert((Condition)entity.Condition);                
             }
 
             return this;

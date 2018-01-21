@@ -115,7 +115,7 @@ namespace Grizzlist.Client
             {
                 if (task != null)
                 {
-                    groupOpen.AddTask(task);
+                    groupOpen.Dispatcher.Invoke(() => groupOpen.AddTask(task));
 
                     using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                         repository.Add(task);
