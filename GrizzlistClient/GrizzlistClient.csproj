@@ -361,6 +361,11 @@
   <ItemGroup>
     <Resource Include="Resources\noteBackground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\conditionOperator_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\conditionValue_24.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
