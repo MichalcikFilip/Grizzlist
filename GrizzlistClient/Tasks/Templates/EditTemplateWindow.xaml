@@ -60,8 +60,11 @@
                             </Grid>
                             <TextBox Grid.Column="1" Grid.Row="7" Margin="10 5" x:Name="tbTags" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
                             <TextBox Grid.Column="1" Grid.Row="8" Margin="10 5" x:Name="tbDaysToDeadline" />
-                            <!--<Image Grid.Column="1" Grid.Row="9" Source="/Resources/addSubtask_24.png"  />
-                            <Image Grid.Column="1" Grid.Row="9" Source="/Resources/addSubtask_24.png" />-->
+                            <StackPanel Grid.Column="1" Grid.Row="9" Orientation="Horizontal">
+                                <Image Margin="10 5" Source="/Resources/conditionOperator_24.png" x:Name="btnConOperator" />
+                                <Image Margin="0 5" Source="/Resources/conditionValue_24.png" x:Name="btnConValue" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="2" x:Name="pnlCondition" />
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>

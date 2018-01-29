@@ -8,11 +8,20 @@
              mc:Ignorable="d">
     <Grid Background="#D8EFFF">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition Width="26" />
+            <ColumnDefinition Width="26" />
             <ColumnDefinition />
             <ColumnDefinition Width="22" />
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <ComboBox Margin="5" x:Name="cbType" />
-        <Image Grid.Column="3" Margin="2" Source="/Resources/remove_24_red.png" MouseLeftButtonDown="Remove_MouseLeftButtonDown" />
+        <Image Grid.Column="1" Margin="4 2" Source="/Resources/conditionOperator_24.png" x:Name="btnConOperator" />
+        <Image Grid.Column="2" Margin="4 2" Source="/Resources/conditionValue_24.png" x:Name="btnConValue" />
+        <Image Grid.Column="4" Margin="2" Source="/Resources/remove_24_red.png" MouseLeftButtonDown="Remove_MouseLeftButtonDown" />
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="5" Margin="6 2 0 2" Background="White" x:Name="pnlCondition" />
     </Grid>
 </v:ValidatableControl>

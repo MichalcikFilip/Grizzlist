@@ -8,13 +8,13 @@
              mc:Ignorable="d">
     <Grid Background="#D8FFDD">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150" />
-            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="60" />
             <ColumnDefinition />
             <ColumnDefinition Width="22" />
         </Grid.ColumnDefinitions>
         <ComboBox Margin="5" x:Name="cbType" />
-        <TextBox Grid.Column="1" Margin="5" x:Name="tbValue" />
+        <TextBox Grid.Column="1" Margin="5 6" x:Name="tbValue" />
         <Image Grid.Column="3" Margin="2" Source="/Resources/remove_24_red.png" MouseLeftButtonDown="Remove_MouseLeftButtonDown" />
     </Grid>
 </v:ValidatableControl>

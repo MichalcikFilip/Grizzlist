@@ -27,6 +27,9 @@ namespace Grizzlist.Client.Tasks.Templates
 
             InitializeComponent();
 
+            btnConOperator.MouseLeftButtonDown += (s, e) => AddCondition(new ConditionOperatorControl());
+            btnConValue.MouseLeftButtonDown += (s, e) => AddCondition(new ConditionValueControl());
+
             foreach (TaskPriority priority in Enum.GetValues(typeof(TaskPriority)))
                 cbPriority.Items.Insert(0, priority);
 
@@ -49,6 +52,14 @@ namespace Grizzlist.Client.Tasks.Templates
 
                 foreach (SubTask subtask in template.Task.SubTasks)
                     AddSubtask(subtask);
+
+                if (template.Condition != null)
+                {
+                    if (template.Condition is ConditionValue)
+                        AddCondition(new ConditionValueControl((ConditionValue)template.Condition));
+                    if (template.Condition is ConditionOperator)
+                        AddCondition(new ConditionOperatorControl((ConditionOperator)template.Condition));
+                }
 
                 EditedTemplate = template;
             }
@@ -115,10 +126,33 @@ namespace Grizzlist.Client.Tasks.Templates
                 AddSubtask(window.EditedTask);
         }
 
+        private void AddCondition(ValidatableControl conditionControl)
+        {
+            btnConOperator.Visibility = Visibility.Collapsed;
+            btnConValue.Visibility = Visibility.Collapsed;
+            conditionControl.Margin = new Thickness(4);
+
+            if (conditionControl is IConditionControl)
+            {
+                ((IConditionControl)conditionControl).RemoveClicked += () =>
+                {
+                    btnConOperator.Visibility = Visibility.Visible;
+                    btnConValue.Visibility = Visibility.Visible;
+
+                    pnlCondition.Children.Clear();
+                };
+            }
+
+            pnlCondition.Children.Add(conditionControl);
+        }
+
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
             if (IsValid())
             {
+                if (pnlCondition.Children.Count == 1 && pnlCondition.Children[0] is ValidatableControl && !((ValidatableControl)pnlCondition.Children[0]).IsValid())
+                    return;
+
                 if (EditedTemplate != null)
                 {
                     EditedTemplate.Task.Name = tbName.Text;
@@ -128,6 +162,7 @@ namespace Grizzlist.Client.Tasks.Templates
                     EditedTemplate.Task.SubTasks.Clear();
                     EditedTemplate.Task.Tags.Clear();
                     EditedTemplate.DaysToDeadline = int.Parse(tbDaysToDeadline.Text);
+                    EditedTemplate.Condition = null;
                 }
                 else
                 {
@@ -139,6 +174,9 @@ namespace Grizzlist.Client.Tasks.Templates
 
                 if (!string.IsNullOrEmpty(tbTags.Text))
                     EditedTemplate.Task.Tags.AddRange(tbTags.Text.Split(',').Select(x => new Tag() { Value = x.Trim() }));
+
+                if (pnlCondition.Children.Count == 1 && pnlCondition.Children[0] is IConditionControl)
+                    EditedTemplate.Condition = ((IConditionControl)pnlCondition.Children[0]).GetCondition();
 
                 DialogResult = true;
             }
