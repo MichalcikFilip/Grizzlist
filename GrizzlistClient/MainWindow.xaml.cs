@@ -1,4 +1,5 @@
 ﻿using Grizzlist.Client.BackgroundActions;
+using Grizzlist.Client.Collection;
 using Grizzlist.Client.Extensions;
 using Grizzlist.Client.Notifications;
 using Grizzlist.Client.Persistent;
@@ -6,6 +7,9 @@ using Grizzlist.Client.Stats;
 using Grizzlist.Client.Tasks;
 using Grizzlist.Client.Tasks.BackgroundActions;
 using Grizzlist.Client.Tasks.Selectors;
+using Grizzlist.Client.Tasks.Templates;
+using Grizzlist.Client.Tasks.Templates.BackgroundActions;
+using Grizzlist.Client.UserSettings.BackgroundActions;
 using Grizzlist.Logger;
 using Grizzlist.Notifications;
 using Grizzlist.Persistent;
@@ -104,6 +108,28 @@ namespace Grizzlist.Client
                     }
                 }
             }
+
+            TemplatesAction templatesAction = new TemplatesAction();
+
+            templatesAction.TaskCreated += task =>
+            {
+                if (task != null)
+                {
+                    groupOpen.Dispatcher.Invoke(() => groupOpen.AddTask(task));
+
+                    using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
+                        repository.Add(task);
+
+                    StatsHelper.Update(StatsData.TaskCreated);
+                    StatsHelper.Update(StatsData.TaskCreatedFromTemplate);
+                    NotificationHelper.Notify(NotificationType.TaskCreatedFromTemplate, task.Name);
+
+                    ActionsCollection.Instance.Add(new TaskDeadlineAction(task));
+                }
+            };
+
+            ActionsCollection.Instance.Add(templatesAction);
+            ActionsCollection.Instance.Add(new LastRunAction());
 
             backgroundThread.Start();
             RefreshMenu();
@@ -305,6 +331,30 @@ namespace Grizzlist.Client
                 StatsHelper.Update(StatsData.TaskRemoved);
                 NotificationHelper.Notify(NotificationType.TaskRemoved, selectedTask.Name);
             }
+        }
+
+        private void Command_OpenTemplates(object sender, ExecutedRoutedEventArgs e)
+        {
+            deselect = false;
+            new CollectionWindow(this, "Templates", new TemplatesCollection()).ShowDialog();
+        }
+
+        private void Command_OpenNotes(object sender, ExecutedRoutedEventArgs e)
+        {
+            deselect = false;
+            //new CollectionWindow(this, "Notes", null).ShowDialog();
+        }
+
+        private void Command_OpenPasswords(object sender, ExecutedRoutedEventArgs e)
+        {
+            deselect = false;
+            //new CollectionWindow(this, "Passwords", null).ShowDialog();
+        }
+
+        private void Command_OpenLinks(object sender, ExecutedRoutedEventArgs e)
+        {
+            deselect = false;
+            //new CollectionWindow(this, "Links", null).ShowDialog();
         }
 
         private void RefreshMenu()

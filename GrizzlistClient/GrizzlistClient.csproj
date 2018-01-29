@@ -70,6 +70,13 @@
     <Compile Include="BackgroundActions\BackgroundThread.cs" />
     <Compile Include="BackgroundActions\BaseAction.cs" />
     <Compile Include="BackgroundActions\IAction.cs" />
+    <Compile Include="Collection\CollectionItem.xaml.cs">
+      <DependentUpon>CollectionItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Collection\CollectionWindow.xaml.cs">
+      <DependentUpon>CollectionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Collection\ICollectionManager.cs" />
     <Compile Include="Configure.cs" />
     <Compile Include="Extensions\ColorExtension.cs" />
     <Compile Include="Notifications\NotificationHelper.cs" />
@@ -77,6 +84,23 @@
       <DependentUpon>NotificationsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Persistent\PersistentFactory.cs" />
+    <Compile Include="Tasks\Templates\BackgroundActions\TemplatesAction.cs" />
+    <Compile Include="Tasks\Templates\ConditionOperatorControl.xaml.cs">
+      <DependentUpon>ConditionOperatorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Templates\ConditionValueControl.xaml.cs">
+      <DependentUpon>ConditionValueControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Templates\EditTemplateWindow.xaml.cs">
+      <DependentUpon>EditTemplateWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Templates\IConditionControl.cs" />
+    <Compile Include="Tasks\Templates\TemplateItem.xaml.cs">
+      <DependentUpon>TemplateItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Templates\TemplatesCollection.cs" />
+    <Compile Include="UserSettings\BackgroundActions\LastRunAction.cs" />
+    <Compile Include="UserSettings\Settings.cs" />
     <Compile Include="Stats\StatsHelper.cs" />
     <Compile Include="Stats\StatsWindow.xaml.cs">
       <DependentUpon>StatsWindow.xaml</DependentUpon>
@@ -112,7 +136,11 @@
     <Compile Include="Tasks\ViewTaskWindow.xaml.cs">
       <DependentUpon>ViewTaskWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserSettings\SettingsFactory.cs" />
+    <Compile Include="Validators\BasicValidators\IntegerValidator.cs" />
+    <Compile Include="Validators\BasicValidators\RangeIntegerValidator.cs" />
     <Compile Include="Validators\IValidator.cs" />
+    <Compile Include="Validators\ValidatableControl.cs" />
     <Compile Include="Validators\ValidatableWindow.cs" />
     <Compile Include="Validators\Validator.cs" />
     <Compile Include="Validators\BasicValidators\EmptyStringValidator.cs" />
@@ -121,6 +149,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChangelogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Collection\CollectionItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Collection\CollectionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,6 +200,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tasks\TasksGroupControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\Templates\ConditionOperatorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\Templates\ConditionValueControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\Templates\EditTemplateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\Templates\TemplateItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -309,6 +361,11 @@
   <ItemGroup>
     <Resource Include="Resources\noteBackground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\conditionOperator_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\conditionValue_24.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

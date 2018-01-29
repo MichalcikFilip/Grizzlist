@@ -113,6 +113,26 @@ namespace Grizzlist.Client.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap conditionOperator_24 {
+            get {
+                object obj = ResourceManager.GetObject("conditionOperator_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap conditionValue_24 {
+            get {
+                object obj = ResourceManager.GetObject("conditionValue_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delete_red {
             get {
                 object obj = ResourceManager.GetObject("delete_red", resourceCulture);
