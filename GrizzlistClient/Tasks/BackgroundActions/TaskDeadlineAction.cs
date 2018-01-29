@@ -17,7 +17,6 @@ namespace Grizzlist.Client.Tasks.BackgroundActions
             : base(1800)
         {
             Task = task;
-            RunAction();
         }
 
         protected override void RunAction()
