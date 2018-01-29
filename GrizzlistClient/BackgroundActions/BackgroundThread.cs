@@ -1,4 +1,5 @@
 ﻿using Grizzlist.Logger;
+using System.Linq;
 using System.Threading;
 
 namespace Grizzlist.Client.BackgroundActions
@@ -28,7 +29,7 @@ namespace Grizzlist.Client.BackgroundActions
         {
             while (running)
             {
-                foreach (IAction action in actions)
+                foreach (IAction action in actions.ToList())
                     if (action.CanRun())
                         action.Run();
 

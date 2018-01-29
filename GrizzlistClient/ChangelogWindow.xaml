@@ -8,6 +8,10 @@
         Title="Changelog" Height="300" Width="300" WindowStartupLocation="CenterOwner">
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <TextBlock TextWrapping="Wrap" Margin="10 5">
+            <Bold>0.6b - 29/01/2018</Bold><LineBreak />
+            * Added task templates feature<LineBreak />
+            * Fixed app crashing<LineBreak />
+            * Fixed miscellaneous bugs<LineBreak /><LineBreak />
             <Bold>0.5b - 27/12/2017</Bold><LineBreak />
             * First beta version released
         </TextBlock>

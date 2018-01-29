@@ -48,7 +48,7 @@ namespace Grizzlist.FileSystem.Repositories
 
         public virtual IEnumerable<T> GetAll()
         {
-            return entities.Values.Select(x => x.Convert()) ?? new List<T>();
+            return entities.Values.Select(x => x.Convert()).ToList() ?? new List<T>();
         }
 
         protected virtual List<D> GetAllData()
