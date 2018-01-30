@@ -20,6 +20,7 @@ namespace Grizzlist.Client.Tasks
         private List<KeyValuePair<Func<TaskControl, object>, bool>> orderSelectors = new List<KeyValuePair<Func<TaskControl, object>, bool>>();
 
         public Task SelectedTask { get { return tasks.Values.FirstOrDefault(x => x.IsSelected)?.Task; } }
+        public IEnumerable<Task> AllTasks { get { return tasks.Select(x => x.Key); } }
         public IEnumerable<Task> Tasks { get { return tasks.Where(x => x.Value.Visibility == Visibility.Visible).Select(x => x.Key); } }
         public int Count { get { return tasks.Values.Count(x => x.Visibility == Visibility.Visible); } }
         public IStringSelector DateSelector { get; set; }
