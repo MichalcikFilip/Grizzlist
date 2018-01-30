@@ -87,6 +87,7 @@ namespace Grizzlist.Client
 
             ActionsCollection.Instance.Add(new DeadlineIconsAction(groupOpen));
             ActionsCollection.Instance.Add(new DeadlineIconsAction(groupPostponed));
+            ActionsCollection.Instance.Add(new TaskArchivingAction(groupClosed));
 
             using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
             {
