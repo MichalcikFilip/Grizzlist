@@ -86,7 +86,11 @@
     <Compile Include="Persistent\PersistentFactory.cs" />
     <Compile Include="Tasks\BackgroundActions\TaskArchivingAction.cs" />
     <Compile Include="Tasks\Search\ConditionOperator.cs" />
+    <Compile Include="Tasks\Search\IValueSpecification.cs" />
+    <Compile Include="Tasks\Search\OperatorType.cs" />
     <Compile Include="Tasks\Search\ConditionValue.cs" />
+    <Compile Include="Tasks\Search\ValueSpecification.cs" />
+    <Compile Include="Tasks\Search\ValueType.cs" />
     <Compile Include="Tasks\Search\ICondition.cs" />
     <Compile Include="Tasks\Templates\BackgroundActions\TemplatesAction.cs" />
     <Compile Include="Tasks\Templates\ConditionOperatorControl.xaml.cs">
