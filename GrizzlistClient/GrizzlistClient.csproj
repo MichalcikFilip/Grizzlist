@@ -85,6 +85,9 @@
     </Compile>
     <Compile Include="Persistent\PersistentFactory.cs" />
     <Compile Include="Tasks\BackgroundActions\TaskArchivingAction.cs" />
+    <Compile Include="Tasks\Search\ConditionOperator.cs" />
+    <Compile Include="Tasks\Search\ConditionValue.cs" />
+    <Compile Include="Tasks\Search\ICondition.cs" />
     <Compile Include="Tasks\Templates\BackgroundActions\TemplatesAction.cs" />
     <Compile Include="Tasks\Templates\ConditionOperatorControl.xaml.cs">
       <DependentUpon>ConditionOperatorControl.xaml</DependentUpon>
@@ -368,5 +371,6 @@
   <ItemGroup>
     <Resource Include="Resources\conditionValue_24.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
