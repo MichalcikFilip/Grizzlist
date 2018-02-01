@@ -2,6 +2,6 @@
 {
     interface IValueSpecification
     {
-        ICondition CreateCondition(object value);
+        ICondition CreateCondition(object value, OperatorType operatorType);
     }
 }

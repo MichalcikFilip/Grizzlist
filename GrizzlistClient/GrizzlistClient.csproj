@@ -85,6 +85,13 @@
     </Compile>
     <Compile Include="Persistent\PersistentFactory.cs" />
     <Compile Include="Tasks\BackgroundActions\TaskArchivingAction.cs" />
+    <Compile Include="Tasks\Search\Comparers\ComparerFactory.cs" />
+    <Compile Include="Tasks\Search\Comparers\Contains.cs" />
+    <Compile Include="Tasks\Search\Comparers\Equals.cs" />
+    <Compile Include="Tasks\Search\Comparers\GreaterThan.cs" />
+    <Compile Include="Tasks\Search\Comparers\IComparer.cs" />
+    <Compile Include="Tasks\Search\Comparers\LessThan.cs" />
+    <Compile Include="Tasks\Search\Comparers\NotEquals.cs" />
     <Compile Include="Tasks\Search\ConditionOperator.cs" />
     <Compile Include="Tasks\Search\IValueSpecification.cs" />
     <Compile Include="Tasks\Search\OperatorType.cs" />

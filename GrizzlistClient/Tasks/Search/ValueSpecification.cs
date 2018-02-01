@@ -3,7 +3,7 @@ using System;
 
 namespace Grizzlist.Client.Tasks.Search
 {
-    class ValueSpecification<T> : IValueSpecification where T : struct
+    class ValueSpecification<T> : IValueSpecification
     {
         public ValueType Type { get; private set; }
         public Func<Task, T> ValueSelector { get; private set; }
@@ -14,9 +14,9 @@ namespace Grizzlist.Client.Tasks.Search
             ValueSelector = valueSelector;
         }
 
-        public ICondition CreateCondition(object value)
+        public ICondition CreateCondition(object value, OperatorType operatorType)
         {
-            return new ConditionValue<T>() { Value = (T)value, Specification = this };
+            return new ConditionValue<T>() { Value = (T)value, OperatorType = operatorType, Specification = this };
         }
     }
 }
