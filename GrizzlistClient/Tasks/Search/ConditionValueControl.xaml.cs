@@ -1,4 +1,5 @@
 ﻿using Grizzlist.Client.Validators;
+using Grizzlist.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace Grizzlist.Client.Tasks.Search
         {
             specifications.Add(ValueType.Name, ValueSpecificationFactory.CreateStringSpecification(ValueType.Name, x => x.Name));
             specifications.Add(ValueType.Created, ValueSpecificationFactory.CreateDateTimeSpecification(ValueType.Created, x => x.Created));
+            specifications.Add(ValueType.Priority, ValueSpecificationFactory.CreateEnumSpecification<TaskPriority>(ValueType.Priority, x => x.Priority));
 
             InitializeComponent();
 

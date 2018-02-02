@@ -163,6 +163,7 @@
       <DependentUpon>ViewTaskWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserSettings\SettingsFactory.cs" />
+    <Compile Include="Validators\BasicValidators\EmptyDateTimeValidator.cs" />
     <Compile Include="Validators\BasicValidators\IntegerValidator.cs" />
     <Compile Include="Validators\BasicValidators\RangeIntegerValidator.cs" />
     <Compile Include="Validators\IValidator.cs" />
