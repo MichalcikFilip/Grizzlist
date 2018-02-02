@@ -2,6 +2,6 @@
 {
     enum ValueType
     {
-        Name
+        Name, Created
     }
 }

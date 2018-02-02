@@ -2,7 +2,7 @@
 
 namespace Grizzlist.Client.Tasks.Search
 {
-    interface ICondition
+    public interface ICondition
     {
         bool Satisfies(Task task);
     }

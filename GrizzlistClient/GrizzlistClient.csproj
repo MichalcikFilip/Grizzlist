@@ -93,10 +93,21 @@
     <Compile Include="Tasks\Search\Comparers\LessThan.cs" />
     <Compile Include="Tasks\Search\Comparers\NotEquals.cs" />
     <Compile Include="Tasks\Search\ConditionOperator.cs" />
+    <Compile Include="Tasks\Search\ConditionOperatorControl.xaml.cs">
+      <DependentUpon>ConditionOperatorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Search\ConditionValueControl.xaml.cs">
+      <DependentUpon>ConditionValueControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Search\IConditionControl.cs" />
     <Compile Include="Tasks\Search\IValueSpecification.cs" />
     <Compile Include="Tasks\Search\OperatorType.cs" />
     <Compile Include="Tasks\Search\ConditionValue.cs" />
+    <Compile Include="Tasks\Search\SearchWindow.xaml.cs">
+      <DependentUpon>SearchWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tasks\Search\ValueSpecification.cs" />
+    <Compile Include="Tasks\Search\ValueSpecificationFactory.cs" />
     <Compile Include="Tasks\Search\ValueType.cs" />
     <Compile Include="Tasks\Search\ICondition.cs" />
     <Compile Include="Tasks\Templates\BackgroundActions\TemplatesAction.cs" />
@@ -207,6 +218,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tasks\EditTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\Search\ConditionOperatorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\Search\ConditionValueControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\Search\SearchWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
