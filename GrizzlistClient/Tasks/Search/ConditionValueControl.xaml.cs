@@ -20,8 +20,16 @@ namespace Grizzlist.Client.Tasks.Search
         public ConditionValueControl()
         {
             specifications.Add(ValueType.Name, ValueSpecificationFactory.CreateStringSpecification(ValueType.Name, x => x.Name));
+            specifications.Add(ValueType.Description, ValueSpecificationFactory.CreateStringSpecification(ValueType.Description, x => x.Description));
+            specifications.Add(ValueType.Note, ValueSpecificationFactory.CreateStringSpecification(ValueType.Note, x => x.Note));
             specifications.Add(ValueType.Created, ValueSpecificationFactory.CreateDateTimeSpecification(ValueType.Created, x => x.Created));
-            specifications.Add(ValueType.Priority, ValueSpecificationFactory.CreateEnumSpecification<TaskPriority>(ValueType.Priority, x => x.Priority));
+            specifications.Add(ValueType.Closed, ValueSpecificationFactory.CreateDateTimeSpecification(ValueType.Closed, x => x.Closed));
+            specifications.Add(ValueType.Priority, ValueSpecificationFactory.CreateEnumSpecification(ValueType.Priority, x => x.Priority));
+            specifications.Add(ValueType.State, ValueSpecificationFactory.CreateEnumSpecification(ValueType.State, x => x.State, new TaskState[] { TaskState.Open, TaskState.Postponed, TaskState.Closed, TaskState.Archived }));
+            specifications.Add(ValueType.Deadline, ValueSpecificationFactory.CreateDateTimeSpecification(ValueType.Deadline, x => x.Deadline));
+            specifications.Add(ValueType.Tags, ValueSpecificationFactory.CreateStringSpecification(ValueType.Tags, x => string.Join(",", x.Tags.Select(y => y.Value)), new OperatorType[] { OperatorType.Contains }));
+            specifications.Add(ValueType.SubtasksNames, ValueSpecificationFactory.CreateStringSpecification(ValueType.SubtasksNames, x => string.Join(",", x.SubTasks.Select(y => y.Name)), new OperatorType[] { OperatorType.Contains }));
+            specifications.Add(ValueType.SubtasksDescriptions, ValueSpecificationFactory.CreateStringSpecification(ValueType.SubtasksDescriptions, x => string.Join(",", x.SubTasks.Select(y => y.Description)), new OperatorType[] { OperatorType.Contains }));
 
             InitializeComponent();
 

@@ -2,6 +2,6 @@
 {
     enum ValueType
     {
-        Name, Created, Priority
+        Name, Description, Note, Created, Closed, Priority, State, Deadline, Tags, SubtasksNames, SubtasksDescriptions
     }
 }

@@ -39,5 +39,17 @@ namespace Grizzlist.Client.Tasks.Search
 
             return new ValueSpecification<T>(type, valueSelector, comboBox, x => (T)((ComboBox)x).SelectedItem, new OperatorType[] { OperatorType.Equals, OperatorType.NotEquals, }, new IValidator[0]);
         }
+
+        public static IValueSpecification CreateEnumSpecification<T>(ValueType type, Func<Task, T> valueSelector, T[] values)
+        {
+            ComboBox comboBox = new ComboBox() { Margin = new Thickness(5) };
+
+            foreach (T value in values)
+                comboBox.Items.Add(value);
+
+            comboBox.SelectedItem = values[0];
+
+            return new ValueSpecification<T>(type, valueSelector, comboBox, x => (T)((ComboBox)x).SelectedItem, new OperatorType[] { OperatorType.Equals, OperatorType.NotEquals, }, new IValidator[0]);
+        }
     }
 }
