@@ -27,6 +27,7 @@ namespace Grizzlist.Client.Collection
             foreach (CollectionItem item in manager.LoadItems())
             {
                 item.Selected += () => Deselect();
+                item.DoubleClick += () => Update_Click(null, null);
 
                 pnlContent.Children.Add(item);
                 items.Add(item);
@@ -65,6 +66,7 @@ namespace Grizzlist.Client.Collection
             if (item != null)
             {
                 item.Selected += () => Deselect();
+                item.DoubleClick += () => Update_Click(null, null);
 
                 pnlContent.Children.Add(item);
                 items.Add(item);

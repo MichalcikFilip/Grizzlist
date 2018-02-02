@@ -12,6 +12,7 @@ namespace Grizzlist.Client.Collection
     public partial class CollectionItem : UserControl
     {
         public event Action Selected;
+        public event Action DoubleClick;
 
         public bool IsSelected { get; private set; }
         public UIElement ItemContent { get; private set; }
@@ -31,6 +32,9 @@ namespace Grizzlist.Client.Collection
 
             IsSelected = true;
             mainGrid.Background = new SolidColorBrush(Color.FromRgb(216, 237, 255));
+
+            if (e.ClickCount == 2)
+                DoubleClick?.Invoke();
         }
 
         public void Deselect()
