@@ -1,4 +1,8 @@
-﻿using Grizzlist.Client.Validators;
+﻿using Grizzlist.Client.Persistent;
+using Grizzlist.Client.Validators;
+using Grizzlist.Persistent;
+using Grizzlist.Tasks;
+using System.Linq;
 using System.Windows;
 
 namespace Grizzlist.Client.Tasks.Search
@@ -36,6 +40,25 @@ namespace Grizzlist.Client.Tasks.Search
             }
 
             pnlCondition.Children.Add(conditionControl);
+        }
+
+        private void SearchClick(object sender, RoutedEventArgs e)
+        {
+            if (pnlCondition.Children.Count == 1 && pnlCondition.Children[0] is ValidatableControl && ((ValidatableControl)pnlCondition.Children[0]).IsValid() && pnlCondition.Children[0] is IConditionControl)
+            {
+                ICondition condition = ((IConditionControl)pnlCondition.Children[0]).GetCondition();
+
+                using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
+                {
+                    int count = 0;
+
+                    foreach (Task task in repository.GetAll().Where(x => x.State != TaskState.Removed))
+                        if (condition.Satisfies(task))
+                            count++;
+
+                    tbResult.Text = $"{count} tasks was found";
+                }
+            }
         }
     }
 }

@@ -41,9 +41,12 @@ namespace Grizzlist.Client.BackgroundActions
 
         public void Remove(IAction action)
         {
-            Actions.Remove(action);
+            if (action != null)
+            {
+                Actions.Remove(action);
 
-            Log.Debug($"Background action {action.GetType().Name} was removed", this);
+                Log.Debug($"Background action {action.GetType().Name} was removed", this);
+            }
         }
 
         public IEnumerator<IAction> GetEnumerator()

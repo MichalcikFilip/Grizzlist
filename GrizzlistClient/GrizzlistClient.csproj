@@ -103,6 +103,9 @@
     <Compile Include="Tasks\Search\IValueSpecification.cs" />
     <Compile Include="Tasks\Search\OperatorType.cs" />
     <Compile Include="Tasks\Search\ConditionValue.cs" />
+    <Compile Include="Tasks\Search\SearchItemControl.xaml.cs">
+      <DependentUpon>SearchItemControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tasks\Search\SearchWindow.xaml.cs">
       <DependentUpon>SearchWindow.xaml</DependentUpon>
     </Compile>
@@ -227,6 +230,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tasks\Search\ConditionValueControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\Search\SearchItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
