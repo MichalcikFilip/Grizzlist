@@ -47,18 +47,29 @@ namespace Grizzlist.Client.Tasks.Search
             if (pnlCondition.Children.Count == 1 && pnlCondition.Children[0] is ValidatableControl && ((ValidatableControl)pnlCondition.Children[0]).IsValid() && pnlCondition.Children[0] is IConditionControl)
             {
                 ICondition condition = ((IConditionControl)pnlCondition.Children[0]).GetCondition();
+                pnlTasks.Children.Clear();
 
                 using (IRepository<Task, long> repository = PersistentFactory.GetContext().GetRepository<Task, long>())
                 {
-                    int count = 0;
-
                     foreach (Task task in repository.GetAll().Where(x => x.State != TaskState.Removed))
+                    {
                         if (condition.Satisfies(task))
-                            count++;
+                        {
+                            SearchItemControl control = new SearchItemControl(this, task);
+                            control.OnSelect += t => Deselect();
+                            pnlTasks.Children.Add(control);
+                        }
+                    }
 
-                    tbResult.Text = $"{count} tasks was found";
+                    tbResult.Text = $"{pnlTasks.Children.Count} tasks was found";
                 }
             }
+        }
+
+        private void Deselect()
+        {
+            foreach (SearchItemControl control in pnlTasks.Children)
+                control.Deselect();
         }
     }
 }
