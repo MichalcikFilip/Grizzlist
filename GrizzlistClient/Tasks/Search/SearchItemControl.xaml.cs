@@ -26,6 +26,7 @@ namespace Grizzlist.Client.Tasks.Search
 
             InitializeComponent();
 
+            mainGrid.Background = new SolidColorBrush(Colors.White);
             pnlPriority.Fill = new SolidColorBrush(TaskPriorityColors.GetColor(Task.Priority));
             tbName.Text = Task.Name;
             tbDescription.Text = Task.Description;

@@ -2,6 +2,6 @@
 {
     enum OperatorType
     {
-        Equals, NotEquals, GreaterThan, LessThan, Contains
+        Equals, NotEquals, GreaterThan, LessThan, Contains, NotContains
     }
 }

@@ -91,6 +91,7 @@
     <Compile Include="Tasks\Search\Comparers\GreaterThan.cs" />
     <Compile Include="Tasks\Search\Comparers\IComparer.cs" />
     <Compile Include="Tasks\Search\Comparers\LessThan.cs" />
+    <Compile Include="Tasks\Search\Comparers\NotContains.cs" />
     <Compile Include="Tasks\Search\Comparers\NotEquals.cs" />
     <Compile Include="Tasks\Search\ConditionOperator.cs" />
     <Compile Include="Tasks\Search\ConditionOperatorControl.xaml.cs">

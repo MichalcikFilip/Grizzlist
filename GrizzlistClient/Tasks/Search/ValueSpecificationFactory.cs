@@ -13,7 +13,7 @@ namespace Grizzlist.Client.Tasks.Search
         public static IValueSpecification CreateStringSpecification(ValueType type, Func<Task, string> valueSelector)
         {
             TextBox textBox = new TextBox() { Margin = new Thickness(5, 7, 5, 7) };
-            return new ValueSpecification<string>(type, valueSelector, textBox, x => ((TextBox)x).Text, new OperatorType[] { OperatorType.Equals, OperatorType.NotEquals, OperatorType.Contains }, new IValidator[] { new EmptyStringValidator(textBox) });
+            return new ValueSpecification<string>(type, valueSelector, textBox, x => ((TextBox)x).Text, new OperatorType[] { OperatorType.Equals, OperatorType.NotEquals, OperatorType.Contains, OperatorType.NotContains }, new IValidator[] { new EmptyStringValidator(textBox) });
         }
 
         public static IValueSpecification CreateStringSpecification(ValueType type, Func<Task, string> valueSelector, OperatorType[] operators)

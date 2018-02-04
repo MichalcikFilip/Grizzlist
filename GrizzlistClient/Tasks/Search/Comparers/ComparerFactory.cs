@@ -16,6 +16,8 @@
                     return new LessThan();
                 case OperatorType.Contains:
                     return new Contains();
+                case OperatorType.NotContains:
+                    return new NotContains();
                 default:
                     return null;
             }
