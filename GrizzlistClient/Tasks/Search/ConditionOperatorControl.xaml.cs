@@ -4,7 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Grizzlist.Client.Tasks.Templates
+namespace Grizzlist.Client.Tasks.Search
 {
     /// <summary>
     /// Interaction logic for ConditionOperatorControl.xaml
@@ -13,7 +13,7 @@ namespace Grizzlist.Client.Tasks.Templates
     {
         public event Action RemoveClicked;
 
-        public ConditionOperatorControl(ConditionOperator condition = null)
+        public ConditionOperatorControl()
         {
             InitializeComponent();
 
@@ -24,19 +24,6 @@ namespace Grizzlist.Client.Tasks.Templates
                 cbType.Items.Add(type);
 
             cbType.SelectedItem = ConditionOperatorType.And;
-
-            if (condition != null)
-            {
-                cbType.SelectedItem = condition.Type;
-
-                foreach (ICondition cond in condition.Conditions)
-                {
-                    if (cond is ConditionValue)
-                        AddCondition(new ConditionValueControl((ConditionValue)cond));
-                    if (cond is ConditionOperator)
-                        AddCondition(new ConditionOperatorControl((ConditionOperator)cond));
-                }
-            }
         }
 
         private void AddCondition(ValidatableControl conditionControl)

@@ -1,0 +1,21 @@
+﻿<v:ValidatableControl x:Class="Grizzlist.Client.Tasks.Search.ConditionValueControl"
+             xmlns:v="clr-namespace:Grizzlist.Client.Validators"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Grizzlist.Client.Tasks.Search"
+             mc:Ignorable="d">
+    <Grid Background="#D8FFDD" x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="145" />
+            <ColumnDefinition Width="105" />
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="22" />
+        </Grid.ColumnDefinitions>
+        <ComboBox Margin="5" Height="24" x:Name="cbType" SelectionChanged="cbType_SelectionChanged" />
+        <ComboBox Grid.Column="1" Margin="5" Height="24" x:Name="cbOperator" />
+        <Image Grid.Column="4" Margin="2" Source="/Resources/remove_24_red.png" MouseLeftButtonDown="Remove_MouseLeftButtonDown" />
+    </Grid>
+</v:ValidatableControl>

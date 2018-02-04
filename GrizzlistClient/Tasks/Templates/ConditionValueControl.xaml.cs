@@ -18,7 +18,7 @@ namespace Grizzlist.Client.Tasks.Templates
             InitializeComponent();
 
             foreach (ConditionValueType type in Enum.GetValues(typeof(ConditionValueType)))
-                cbType.Items.Insert(0, type);
+                cbType.Items.Add(type);
 
             cbType.SelectedItem = ConditionValueType.DayInMonth;
             tbValue.Text = "0";

@@ -1,0 +1,35 @@
+﻿<Window x:Class="Grizzlist.Client.Tasks.Search.SearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Grizzlist.Client.Tasks.Search"
+        mc:Ignorable="d"
+        Title="Search" Height="600" Width="450" WindowStartupLocation="CenterOwner">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition />
+                    <RowDefinition Height="35" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="1" Margin="0 1 0 0" Content="Condition" HorizontalAlignment="Right" />
+                <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                    <Image Margin="10 5" Source="/Resources/conditionOperator_24.png" x:Name="btnConOperator" />
+                    <Image Margin="0 5" Source="/Resources/conditionValue_24.png" x:Name="btnConValue" />
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" x:Name="pnlCondition" />
+                <TextBlock Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="10" x:Name="tbResult" />
+                <Button Grid.Column="1" Grid.Row="3" Content="Search" HorizontalAlignment="Right" Margin="20 5" Padding="10 0" Click="SearchClick" />
+                <StackPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" x:Name="pnlTasks" />
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

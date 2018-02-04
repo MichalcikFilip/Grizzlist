@@ -24,6 +24,11 @@ namespace Grizzlist.Client.Validators
             validators.Remove(validator);
         }
 
+        public void ClearValidators()
+        {
+            validators.Clear();
+        }
+
         public virtual bool IsValid()
         {
             bool isValid = true;

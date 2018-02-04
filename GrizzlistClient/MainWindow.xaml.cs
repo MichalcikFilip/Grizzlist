@@ -6,6 +6,7 @@ using Grizzlist.Client.Persistent;
 using Grizzlist.Client.Stats;
 using Grizzlist.Client.Tasks;
 using Grizzlist.Client.Tasks.BackgroundActions;
+using Grizzlist.Client.Tasks.Search;
 using Grizzlist.Client.Tasks.Selectors;
 using Grizzlist.Client.Tasks.Templates;
 using Grizzlist.Client.Tasks.Templates.BackgroundActions;
@@ -338,6 +339,12 @@ namespace Grizzlist.Client
         {
             deselect = false;
             new CollectionWindow(this, "Templates", new TemplatesCollection()).ShowDialog();
+        }
+
+        private void Command_OpenSearch(object sender, ExecutedRoutedEventArgs e)
+        {
+            deselect = false;
+            new SearchWindow(this).ShowDialog();
         }
 
         private void Command_OpenNotes(object sender, ExecutedRoutedEventArgs e)

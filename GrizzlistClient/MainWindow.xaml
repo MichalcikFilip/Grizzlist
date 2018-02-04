@@ -73,7 +73,7 @@
         <CommandBinding Command="commands:RoutedCommands.CloseTask" Executed="Command_CloseTask" />
         <CommandBinding Command="commands:RoutedCommands.RemoveTask" Executed="Command_RemoveTask" />
         <CommandBinding Command="commands:RoutedCommands.OpenTemplates" Executed="Command_OpenTemplates" />
-        <CommandBinding Command="commands:RoutedCommands.OpenSearch" Executed="CommandBinding_Executed" />
+        <CommandBinding Command="commands:RoutedCommands.OpenSearch" Executed="Command_OpenSearch" />
         <CommandBinding Command="commands:RoutedCommands.OpenNotes" Executed="Command_OpenNotes" />
         <CommandBinding Command="commands:RoutedCommands.OpenPasswords" Executed="Command_OpenPasswords" />
         <CommandBinding Command="commands:RoutedCommands.OpenLinks" Executed="Command_OpenLinks" />
