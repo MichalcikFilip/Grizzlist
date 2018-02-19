@@ -17,7 +17,7 @@ namespace Grizzlist.Client.Persistent
 
         public static void ConfigureContext()
         {
-            FileSystemContext.RepositoriesMapping.Add(typeof(Settings), () => new DefaultRepository<Settings, Settings.Persistent, long>(new DefaultSerializer<List<Settings.Persistent>>("Settings/user.dat")));
+            FileSystemContext.RepositoriesMapping.Add(typeof(Settings), () => new DefaultRepository<Settings, Settings.Persistent, long>(new DefaultSerializer<List<Settings.Persistent>>(@"Settings\user.dat")));
             Log.Debug("User settings repository added", null);
         }
     }

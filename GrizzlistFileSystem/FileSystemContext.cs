@@ -24,13 +24,13 @@ namespace Grizzlist.FileSystem
 
         static FileSystemContext()
         {
-            repositoriesMapping.Add(typeof(StatsManager), () => new DefaultRepository<StatsManager, PersistentStatsManager, long>(new DefaultSerializer<List<PersistentStatsManager>>("Data/stats.dat")));
-            repositoriesMapping.Add(typeof(Notification), () => new DefaultRepository<Notification, PersistentNotification, long>(new DefaultSerializer<List<PersistentNotification>>("Data/notifications.dat")));
-            repositoriesMapping.Add(typeof(Group<LinkRecord>), () => new DefaultRepository<Group<LinkRecord>, PersistentGroup<LinkRecord, PersistentLinkRecord>, long>(new DefaultSerializer<List<PersistentGroup<LinkRecord, PersistentLinkRecord>>>("Data/links.dat")));
-            repositoriesMapping.Add(typeof(Group<NoteRecord>), () => new DefaultRepository<Group<NoteRecord>, PersistentGroup<NoteRecord, PersistentNoteRecord>, long>(new DefaultSerializer<List<PersistentGroup<NoteRecord, PersistentNoteRecord>>>("Data/notes.dat")));
-            repositoriesMapping.Add(typeof(Group<PasswordRecord>), () => new DefaultRepository<Group<PasswordRecord>, PersistentGroup<PasswordRecord, PersistentPasswordRecord>, long>(new DefaultSerializer<List<PersistentGroup<PasswordRecord, PersistentPasswordRecord>>>("Data/passwords.dat")));
-            repositoriesMapping.Add(typeof(Task), () => new DefaultRepository<Task, PersistentTask, long>(new DefaultSerializer<List<PersistentTask>>("Data/tasks.dat")));
-            repositoriesMapping.Add(typeof(Template), () => new DefaultRepository<Template, PersistentTemplate, long>(new DefaultSerializer<List<PersistentTemplate>>("Data/templates.dat")));
+            repositoriesMapping.Add(typeof(StatsManager), () => new DefaultRepository<StatsManager, PersistentStatsManager, long>(new DefaultSerializer<List<PersistentStatsManager>>(@"Data\stats.dat")));
+            repositoriesMapping.Add(typeof(Notification), () => new DefaultRepository<Notification, PersistentNotification, long>(new DefaultSerializer<List<PersistentNotification>>(@"Data\notifications.dat")));
+            repositoriesMapping.Add(typeof(Group<LinkRecord>), () => new DefaultRepository<Group<LinkRecord>, PersistentGroup<LinkRecord, PersistentLinkRecord>, long>(new DefaultSerializer<List<PersistentGroup<LinkRecord, PersistentLinkRecord>>>(@"Data\links.dat")));
+            repositoriesMapping.Add(typeof(Group<NoteRecord>), () => new DefaultRepository<Group<NoteRecord>, PersistentGroup<NoteRecord, PersistentNoteRecord>, long>(new DefaultSerializer<List<PersistentGroup<NoteRecord, PersistentNoteRecord>>>(@"Data\notes.dat")));
+            repositoriesMapping.Add(typeof(Group<PasswordRecord>), () => new DefaultRepository<Group<PasswordRecord>, PersistentGroup<PasswordRecord, PersistentPasswordRecord>, long>(new DefaultSerializer<List<PersistentGroup<PasswordRecord, PersistentPasswordRecord>>>(@"Data\passwords.dat")));
+            repositoriesMapping.Add(typeof(Task), () => new DefaultRepository<Task, PersistentTask, long>(new DefaultSerializer<List<PersistentTask>>(@"Data\tasks.dat")));
+            repositoriesMapping.Add(typeof(Template), () => new DefaultRepository<Template, PersistentTemplate, long>(new DefaultSerializer<List<PersistentTemplate>>(@"Data\templates.dat")));
         }
 
         public IRepository<T, K> GetRepository<T, K>() where T : IPersistentEntity<K>

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Grizzlist.FileSystem.Serialization
@@ -6,7 +7,7 @@ namespace Grizzlist.FileSystem.Serialization
     public class DefaultSerializer<T> : BaseSerializer<T>
     {
         public DefaultSerializer(string filePath)
-            : base(filePath)
+            : base($@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\Grizzlist\{filePath}")
         { }
 
         public override T Deserialize()
