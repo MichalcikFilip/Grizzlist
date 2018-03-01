@@ -66,7 +66,112 @@
             </Grid>
         </TabItem>
         <TabItem Header="Attachments">
-            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1" Margin="5 0" Orientation="Horizontal">
+                    <Button Margin="5" Style="{DynamicResource ImageButton}" ToolTip="Add">
+                        <Image Source="/Resources/addSubtask_24.png" />
+                    </Button>
+                    <Button Margin="5" Style="{DynamicResource ImageButton}" ToolTip="Remove">
+                        <Image Source="/Resources/remove_24_red.png" />
+                    </Button>
+                    <Button Margin="15 5 5 5" Style="{DynamicResource ImageButton}" ToolTip="Note">
+                        <Image Source="/Resources/note.png" />
+                    </Button>
+                </StackPanel>
+                <TreeView Grid.Row="2" BorderThickness="0" Margin="0 10 0 0">
+                    <TreeViewItem>
+                        <TreeViewItem.Header>
+                            <Grid Margin="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/Resources/folder.png" Width="16" Height="16" Margin="0 0 4 0" />
+                                <TextBlock Grid.Column="1" Text="C:" />
+                            </Grid>
+                        </TreeViewItem.Header>
+                        <TreeViewItem>
+                            <TreeViewItem.Header>
+                                <Grid Margin="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="/Resources/folder.png" Width="16" Height="16" Margin="0 0 4 0" />
+                                    <TextBlock Grid.Column="1" Text="Users" />
+                                </Grid>
+                            </TreeViewItem.Header>
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <Grid Margin="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="/Resources/folder.png" Width="16" Height="16" Margin="0 0 4 0" />
+                                        <TextBlock Grid.Column="1" Text="Michalcik" />
+                                    </Grid>
+                                </TreeViewItem.Header>
+                                <TreeViewItem>
+                                    <TreeViewItem.Header>
+                                        <Grid Margin="2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="/Resources/folder.png" Width="16" Height="16" Margin="0 0 4 0" />
+                                            <TextBlock Grid.Column="1" Text="Documents" />
+                                        </Grid>
+                                    </TreeViewItem.Header>
+                                    <TreeViewItem>
+                                        <TreeViewItem.Header>
+                                            <Grid Margin="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="/Resources/fileIcon.png" Width="16" Height="16" Margin="0 0 4 0" />
+                                                <TextBlock Grid.Column="1" Text="log.txt" />
+                                            </Grid>
+                                        </TreeViewItem.Header>
+                                    </TreeViewItem>
+                                    <TreeViewItem ToolTip="Attachment note example">
+                                        <TreeViewItem.Header>
+                                            <Grid Margin="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="/Resources/fileIcon.png" Width="16" Height="16" Margin="0 0 4 0" />
+                                                <Image Grid.Column="1" Source="/Resources/note.png" Width="16" Height="16" Margin="0 0 4 0" />
+                                                <TextBlock Grid.Column="2" Text="test.xlsx" />
+                                            </Grid>
+                                        </TreeViewItem.Header>
+                                    </TreeViewItem>
+                                    <TreeViewItem>
+                                        <TreeViewItem.Header>
+                                            <Grid Margin="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="/Resources/fileDeleted.png" Width="16" Height="16" Margin="0 0 4 0" />
+                                                <TextBlock Grid.Column="1" Text="grizzlist.pdf" />
+                                            </Grid>
+                                        </TreeViewItem.Header>
+                                    </TreeViewItem>
+                                </TreeViewItem>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                    </TreeViewItem>
+                </TreeView>
+            </Grid>
         </TabItem>
     </TabControl>
 </v:ValidatableWindow>

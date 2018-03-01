@@ -414,6 +414,14 @@
   <ItemGroup>
     <Resource Include="Resources\conditionValue_24.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\fileDeleted.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\fileIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
