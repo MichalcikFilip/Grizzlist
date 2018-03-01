@@ -7,7 +7,7 @@ namespace Grizzlist.FileSystem.Serialization
     public class DefaultSerializer<T> : BaseSerializer<T>
     {
         public DefaultSerializer(string filePath)
-            : base($@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\Grizzlist\{filePath}")
+            : base($@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\{filePath}")
         { }
 
         public override T Deserialize()

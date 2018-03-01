@@ -30,7 +30,7 @@ namespace Grizzlist.Client
 
             Log.Info("Grizzlist started", null);
 
-            PersistentFactory.ConfigureContext();
+            PersistentFactory.ConfigureContext(Settings.Default.AppDataFolder);
         }
     }
 }

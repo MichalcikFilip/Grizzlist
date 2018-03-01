@@ -11,5 +11,8 @@
     <Setting Name="LogLevel" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Debug</Value>
     </Setting>
+    <Setting Name="AppDataFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Grizzlist\Debug</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
