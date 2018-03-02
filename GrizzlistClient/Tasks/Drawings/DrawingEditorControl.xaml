@@ -1,0 +1,39 @@
+﻿<v:ValidatableControl x:Class="Grizzlist.Client.Tasks.Drawings.DrawingEditorControl"
+             xmlns:v="clr-namespace:Grizzlist.Client.Validators"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Grizzlist.Client.Tasks.Drawings"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="30" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1" Margin="0 6 0 0" HorizontalAlignment="Right" Text="Name" />
+        <TextBlock Grid.Row="2" Margin="0 6 0 0" HorizontalAlignment="Right" Text="Note" />
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="10 5" x:Name="tbName" />
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="10 5" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" x:Name="tbNote" />
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="5 0" Orientation="Horizontal">
+            <Button Margin="2 5" Style="{DynamicResource ImageButton}" ToolTip="Add">
+                <Image Source="/Resources/addSubtask_24.png" />
+            </Button>
+            <Button Margin="2 5" Style="{DynamicResource ImageButton}" ToolTip="Remove">
+                <Image Source="/Resources/remove_24_red.png" />
+            </Button>
+            <Button Margin="2 5" Style="{DynamicResource ImageButton}" ToolTip="Note">
+                <Image Source="/Resources/note.png" />
+            </Button>
+        </StackPanel>
+        <Canvas Grid.Row="4" Grid.ColumnSpan="2" Margin="5" Background="White" x:Name="mainCanvas" />
+    </Grid>
+</v:ValidatableControl>
