@@ -84,6 +84,7 @@
       <DependentUpon>NotificationsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Persistent\PersistentFactory.cs" />
+    <Compile Include="Tasks\Attachments\AttachmentNode.cs" />
     <Compile Include="Tasks\BackgroundActions\TaskArchivingAction.cs" />
     <Compile Include="Tasks\Search\Comparers\ComparerFactory.cs" />
     <Compile Include="Tasks\Search\Comparers\Contains.cs" />

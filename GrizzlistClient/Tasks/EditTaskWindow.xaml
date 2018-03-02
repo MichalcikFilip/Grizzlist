@@ -73,7 +73,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="1" Margin="5 0" Orientation="Horizontal">
-                    <Button Margin="5" Style="{DynamicResource ImageButton}" ToolTip="Add">
+                    <Button Margin="5" Style="{DynamicResource ImageButton}" ToolTip="Add" Click="AddAttachment_Click">
                         <Image Source="/Resources/addSubtask_24.png" />
                     </Button>
                     <Button Margin="5" Style="{DynamicResource ImageButton}" ToolTip="Remove">
@@ -83,7 +83,7 @@
                         <Image Source="/Resources/note.png" />
                     </Button>
                 </StackPanel>
-                <TreeView Grid.Row="2" BorderThickness="0" Margin="0 10 0 0">
+                <TreeView Grid.Row="2" BorderThickness="0" Margin="0 10 0 0" x:Name="tvAttachments">
                     <TreeViewItem>
                         <TreeViewItem.Header>
                             <Grid Margin="2">
