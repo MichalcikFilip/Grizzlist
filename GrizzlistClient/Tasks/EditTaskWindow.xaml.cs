@@ -1,11 +1,14 @@
-﻿using Grizzlist.Client.Tasks.Validators;
+﻿using Grizzlist.Client.Tasks.Attachments;
+using Grizzlist.Client.Tasks.Validators;
 using Grizzlist.Client.Validators;
 using Grizzlist.Client.Validators.BasicValidators;
 using Grizzlist.Extensions;
 using Grizzlist.Tasks;
 using Grizzlist.Tasks.Types;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,6 +22,7 @@ namespace Grizzlist.Client.Tasks
     public partial class EditTaskWindow : ValidatableWindow
     {
         private List<SubTask> subtasks = new List<SubTask>();
+        private List<Attachment> attachments = new List<Attachment>();
 
         public Task EditedTask { get; private set; }
 
@@ -49,6 +53,9 @@ namespace Grizzlist.Client.Tasks
 
                 foreach (SubTask subtask in task.SubTasks)
                     AddSubtask(subtask);
+
+                foreach (Attachment attachment in task.Attachments)
+                    AddAttachment(attachment);
 
                 EditedTask = task;
             }
@@ -115,6 +122,79 @@ namespace Grizzlist.Client.Tasks
                 AddSubtask(window.EditedTask);
         }
 
+        private void AddAttachment(Attachment attachment)
+        {
+            if (!attachments.Any(x => x.Path == attachment.Path))
+            {
+                attachments.Add(attachment);
+                CreateAttachmentNode(tvAttachments, attachment.Path.Split('\\'), 0, attachment);
+            }
+        }
+
+        private void CreateAttachmentNode(ItemsControl parentNode, string[] path, int level, Attachment attachment)
+        {
+            if (path.Length > level)
+            {
+                if (parentNode.Items.SortDescriptions.Count == 0)
+                {
+                    parentNode.Items.SortDescriptions.Add(new SortDescription("IsFile", ListSortDirection.Ascending));
+                    parentNode.Items.SortDescriptions.Add(new SortDescription("NodeName", ListSortDirection.Ascending));
+                }
+
+                string nodeName = path[level];
+                AttachmentNode node = parentNode.Items.OfType<AttachmentNode>().FirstOrDefault(x => x.NodeName == nodeName);
+
+                if (node == null)
+                {
+                    node = new AttachmentNode(attachment, nodeName, string.Join(@"\", path.Take(level + 1)), path.Length == level + 1);
+                    parentNode.Items.Add(node);
+                    parentNode.Items.Refresh();
+                }
+
+                CreateAttachmentNode(node, path, level + 1, attachment);
+                node.ExpandSubtree();
+            }
+        }
+
+        private void AddAttachment_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog() { Multiselect = true };
+
+            if (dlg.ShowDialog(this) ?? false)
+                foreach (string fileName in dlg.FileNames)
+                    AddAttachment(new Attachment() { Path = fileName });
+        }
+
+        private void RemoveAttachment_Click(object sender, RoutedEventArgs e)
+        {
+            if (tvAttachments.SelectedItem != null)
+            {
+                AttachmentNode selectedNode = (AttachmentNode)tvAttachments.SelectedItem;
+                ((ItemsControl)selectedNode.Parent).Items.Remove(selectedNode);
+                attachments.RemoveAll(x => x.Path.StartsWith(selectedNode.FullPath));
+            }
+        }
+
+        private void UpdateAttachmentNode_Click(object sender, RoutedEventArgs e)
+        {
+            if (tvAttachments.SelectedItem != null)
+            {
+                AttachmentNode selectedNode = (AttachmentNode)tvAttachments.SelectedItem;
+
+                if (selectedNode.IsFile)
+                {
+                    AttachmentNoteWindow dlg = new AttachmentNoteWindow(this) { Note = selectedNode.Attachment.Note };
+
+                    if (dlg.ShowDialog() ?? false)
+                    {
+                        selectedNode.UpdateNote(dlg.Note);
+                        attachments.RemoveAll(x => x.Path == selectedNode.Attachment.Path);
+                        attachments.Add(new Attachment() { Path = selectedNode.Attachment.Path, Note = dlg.Note });
+                    }
+                }
+            }
+        }
+
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
             if (IsValid())
@@ -129,6 +209,7 @@ namespace Grizzlist.Client.Tasks
                     EditedTask.Updated = DateTime.Now;
                     EditedTask.SubTasks.Clear();
                     EditedTask.Tags.Clear();
+                    EditedTask.Attachments.Clear();
                 }
                 else
                 {
@@ -140,6 +221,9 @@ namespace Grizzlist.Client.Tasks
 
                 if (!string.IsNullOrEmpty(tbTags.Text))
                     EditedTask.Tags.AddRange(tbTags.Text.Split(',').Select(x => new Tag() { Value = x.Trim() }));
+
+                if (attachments.Count > 0)
+                    EditedTask.Attachments.AddRange(attachments);
 
                 DialogResult = true;
             }
