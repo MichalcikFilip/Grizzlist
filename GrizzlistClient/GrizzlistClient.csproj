@@ -85,6 +85,9 @@
     </Compile>
     <Compile Include="Persistent\PersistentFactory.cs" />
     <Compile Include="Tasks\Attachments\AttachmentNode.cs" />
+    <Compile Include="Tasks\Attachments\AttachmentNoteWindow.xaml.cs">
+      <DependentUpon>AttachmentNoteWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tasks\BackgroundActions\TaskArchivingAction.cs" />
     <Compile Include="Tasks\Search\Comparers\ComparerFactory.cs" />
     <Compile Include="Tasks\Search\Comparers\Contains.cs" />
@@ -216,6 +219,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Stats\StatsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\Attachments\AttachmentNoteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

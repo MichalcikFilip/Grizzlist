@@ -1,6 +1,9 @@
-﻿using Grizzlist.Tasks;
+﻿using Grizzlist.Client.Tasks.Attachments;
+using Grizzlist.Tasks;
 using Grizzlist.Tasks.Types;
 using System;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -84,6 +87,9 @@ namespace Grizzlist.Client.Tasks
                 foreach (Tag tag in task.Tags)
                     pnlTags.Children.Add(new Border() { Margin = new Thickness(4), Padding = new Thickness(4, 2, 4, 2), CornerRadius = new CornerRadius(4), Background = new SolidColorBrush(Color.FromRgb(255, 244, 204)), BorderThickness = new Thickness(1), BorderBrush = new SolidColorBrush(Color.FromRgb(255, 216, 0)), Child = new TextBlock() { Text = tag.Value } });
 
+                foreach (Attachment attachment in task.Attachments)
+                    CreateAttachmentNode(tvAttachments, attachment.Path.Split('\\'), 0, attachment);
+
                 tbActivity.Text = FormatActivity(totalActivity);
             }
         }
@@ -115,6 +121,31 @@ namespace Grizzlist.Client.Tasks
 
             foreach (Activity activity in task.Activities)
                 pnlActivity.Children.Add(new Border() { BorderThickness = new Thickness(1), BorderBrush = new SolidColorBrush(Color.FromArgb(120, 102, 186, 255)), Background = new SolidColorBrush(Color.FromArgb(120, 216, 237, 255)), Margin = new Thickness(10, 5, 10, 5), Padding = new Thickness(6), Child = new TextBlock() { Text = $"{activity.Start} - {(activity.IsActive ? DateTime.Now : activity.End)}{Environment.NewLine}Activity: {FormatActivity(activity.Length)}" } });
+        }
+
+        private void CreateAttachmentNode(ItemsControl parentNode, string[] path, int level, Attachment attachment)
+        {
+            if (path.Length > level)
+            {
+                if (parentNode.Items.SortDescriptions.Count == 0)
+                {
+                    parentNode.Items.SortDescriptions.Add(new SortDescription("IsFile", ListSortDirection.Ascending));
+                    parentNode.Items.SortDescriptions.Add(new SortDescription("NodeName", ListSortDirection.Ascending));
+                }
+
+                string nodeName = path[level];
+                AttachmentNode node = parentNode.Items.OfType<AttachmentNode>().FirstOrDefault(x => x.NodeName == nodeName);
+
+                if (node == null)
+                {
+                    node = new AttachmentNode(attachment, nodeName, string.Join(@"\", path.Take(level + 1)), path.Length == level + 1);
+                    parentNode.Items.Add(node);
+                    parentNode.Items.Refresh();
+                }
+
+                CreateAttachmentNode(node, path, level + 1, attachment);
+                node.ExpandSubtree();
+            }
         }
 
         private string FormatActivity(TimeSpan activity)
