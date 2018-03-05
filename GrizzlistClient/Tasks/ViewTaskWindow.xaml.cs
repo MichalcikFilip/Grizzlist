@@ -29,7 +29,7 @@ namespace Grizzlist.Client.Tasks
                 if (string.IsNullOrEmpty(task.Note))
                     rowNote.Height = new GridLength(0);
 
-                if (task.State != TaskState.Closed)
+                if (task.State != TaskState.Closed && task.State != TaskState.Archived)
                     rowClosed.Height = new GridLength(0);
 
                 if (task.SubTasks.Count == 0)
