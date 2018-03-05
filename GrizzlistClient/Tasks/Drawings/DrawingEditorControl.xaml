@@ -24,7 +24,7 @@
         <TextBox Grid.Row="1" Grid.Column="1" Margin="10 5" x:Name="tbName" TextChanged="tbName_TextChanged" />
         <TextBox Grid.Row="2" Grid.Column="1" Margin="10 5" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" x:Name="tbNote" TextChanged="tbNote_TextChanged" />
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="5 0" Orientation="Horizontal">
-            <Button Margin="2 5" Width="20" Background="White" ToolTip="Select color" Style="{DynamicResource ColorButton}" >
+            <Button Margin="2 5" Width="20" Background="Black" ToolTip="Select color" Style="{DynamicResource ColorButton}" Click="SelectColor_Click">
                 <Button.Resources>
                     <Style x:Key="FocusVisual">
                         <Setter Property="Control.Template">

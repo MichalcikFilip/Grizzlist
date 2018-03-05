@@ -5,6 +5,7 @@ using System;
 using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Media;
 
 namespace Grizzlist.Client.Tasks.Drawings
@@ -15,6 +16,7 @@ namespace Grizzlist.Client.Tasks.Drawings
     public partial class DrawingEditorControl : ValidatableControl
     {
         private Grizzlist.Tasks.Types.Drawing drawing;
+        private System.Drawing.Color selectedColor = System.Drawing.Color.Black;
 
         public event Action OnDelete;
         public event Action<bool> OnValidation;
@@ -62,6 +64,20 @@ namespace Grizzlist.Client.Tasks.Drawings
         private void tbNote_TextChanged(object sender, TextChangedEventArgs e)
         {
             drawing.Note = tbNote.Text;
+        }
+
+        private void SelectColor_Click(object sender, RoutedEventArgs e)
+        {
+            using (ColorDialog dlg = new ColorDialog())
+            {
+                dlg.Color = selectedColor;
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    selectedColor = dlg.Color;
+                    ((System.Windows.Controls.Button)sender).Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(dlg.Color.R, dlg.Color.G, dlg.Color.B));
+                }
+            }
         }
 
         private void ChangeSize_Click(object sender, RoutedEventArgs e)
