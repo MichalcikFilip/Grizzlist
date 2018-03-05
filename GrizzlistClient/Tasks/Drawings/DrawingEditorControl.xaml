@@ -21,19 +21,23 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="1" Margin="0 6 0 0" HorizontalAlignment="Right" Text="Name" />
         <TextBlock Grid.Row="2" Margin="0 6 0 0" HorizontalAlignment="Right" Text="Note" />
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="10 5" x:Name="tbName" />
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="10 5" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" x:Name="tbNote" />
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="10 5" x:Name="tbName" TextChanged="tbName_TextChanged" />
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="10 5" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" x:Name="tbNote" TextChanged="tbNote_TextChanged" />
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="5 0" Orientation="Horizontal">
             <Button Margin="2 5" Style="{DynamicResource ImageButton}" ToolTip="Add">
                 <Image Source="/Resources/addSubtask_24.png" />
-            </Button>
-            <Button Margin="2 5" Style="{DynamicResource ImageButton}" ToolTip="Remove">
-                <Image Source="/Resources/remove_24_red.png" />
-            </Button>
+            </Button>            
             <Button Margin="2 5" Style="{DynamicResource ImageButton}" ToolTip="Note">
                 <Image Source="/Resources/note.png" />
             </Button>
+            <Button Margin="40 5 2 5" Style="{DynamicResource ImageButton}" ToolTip="Remove drawing" Click="RemoveDrawing_Click">
+                <Image Source="/Resources/remove_24_red.png" />
+            </Button>
         </StackPanel>
-        <Canvas Grid.Row="4" Grid.ColumnSpan="2" Margin="5" Background="White" x:Name="mainCanvas" />
+        <ScrollViewer Grid.Row="4" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Border Margin="5" BorderThickness="1" BorderBrush="#ABADB3" x:Name="brCanvas">
+                <Canvas Background="White" x:Name="mainCanvas" />
+            </Border>
+        </ScrollViewer>
     </Grid>
 </v:ValidatableControl>

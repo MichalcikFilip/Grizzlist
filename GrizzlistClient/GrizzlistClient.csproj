@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="Collection\ICollectionManager.cs" />
     <Compile Include="Configure.cs" />
+    <Compile Include="Extensions\BitmapExtension.cs" />
     <Compile Include="Extensions\ColorExtension.cs" />
     <Compile Include="Notifications\NotificationHelper.cs" />
     <Compile Include="Notifications\NotificationsWindow.xaml.cs">
