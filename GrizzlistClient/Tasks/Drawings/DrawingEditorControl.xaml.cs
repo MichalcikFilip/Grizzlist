@@ -31,15 +31,17 @@ namespace Grizzlist.Client.Tasks.Drawings
             AddValidator(new EmptyStringValidator(tbName));
 
             tbName.Text = Drawing.Name;
-            tbNote.Text = Drawing.Note;
+            tbNote.Text = Drawing.Note;            
+            tbWidth.Text = Drawing.Image.Width.ToString();
+            tbHeight.Text = Drawing.Image.Height.ToString();
+
+            RefreshCanvas();
+        }
+
+        private void RefreshCanvas()
+        {
             brCanvas.Width = Drawing.Image.Width;
             brCanvas.Height = Drawing.Image.Height;
-
-            using (Graphics gr = Graphics.FromImage(Drawing.Image))
-            {
-                gr.Clear(System.Drawing.Color.White);
-            }
-
             mainCanvas.Background = new ImageBrush(Drawing.Image.CreateBitmapSource()) { Stretch = Stretch.None };
         }
 
@@ -60,6 +62,17 @@ namespace Grizzlist.Client.Tasks.Drawings
         private void tbNote_TextChanged(object sender, TextChangedEventArgs e)
         {
             drawing.Note = tbNote.Text;
+        }
+
+        private void ChangeSize_Click(object sender, RoutedEventArgs e)
+        {
+            int width, height;
+
+            if (int.TryParse(tbWidth.Text, out width) && int.TryParse(tbHeight.Text, out height) && width > 100 && height > 100)
+            {
+                drawing.Image = new Bitmap(drawing.Image, new System.Drawing.Size(width, height));
+                RefreshCanvas();
+            }            
         }
 
         private void RemoveDrawing_Click(object sender, RoutedEventArgs e)

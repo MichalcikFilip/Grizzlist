@@ -439,5 +439,20 @@
   <ItemGroup>
     <Resource Include="Resources\fileIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\size.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\rubber.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\brush.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\clear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\text.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
