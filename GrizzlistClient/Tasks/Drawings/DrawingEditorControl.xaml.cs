@@ -24,7 +24,7 @@ namespace Grizzlist.Client.Tasks.Drawings
 
         public Grizzlist.Tasks.Types.Drawing Drawing { get { return drawing; } }
 
-        public DrawingEditorControl(Grizzlist.Tasks.Types.Drawing drawing)
+        public DrawingEditorControl(Grizzlist.Tasks.Types.Drawing drawing, bool readOnly = false)
         {
             this.drawing = drawing;
 
@@ -33,9 +33,16 @@ namespace Grizzlist.Client.Tasks.Drawings
             AddValidator(new EmptyStringValidator(tbName));
 
             tbName.Text = Drawing.Name;
-            tbNote.Text = Drawing.Note;            
+            tbNote.Text = Drawing.Note;
             tbWidth.Text = Drawing.Image.Width.ToString();
             tbHeight.Text = Drawing.Image.Height.ToString();
+
+            if (readOnly)
+            {
+                tbName.IsReadOnly = true;
+                tbNote.IsReadOnly = true;
+                rowTools.Height = new GridLength(0);
+            }
 
             RefreshCanvas();
         }

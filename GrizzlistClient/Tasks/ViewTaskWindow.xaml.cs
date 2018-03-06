@@ -1,4 +1,6 @@
-﻿using Grizzlist.Client.Tasks.Attachments;
+﻿using Grizzlist.Client.Extensions;
+using Grizzlist.Client.Tasks.Attachments;
+using Grizzlist.Client.Tasks.Drawings;
 using Grizzlist.Tasks;
 using Grizzlist.Tasks.Types;
 using System;
@@ -90,6 +92,9 @@ namespace Grizzlist.Client.Tasks
                 foreach (Attachment attachment in task.Attachments)
                     CreateAttachmentNode(tvAttachments, attachment.Path.Split('\\'), 0, attachment);
 
+                foreach (Grizzlist.Tasks.Types.Drawing drawing in task.Drawings)
+                    AddDrawing(drawing);
+
                 tbActivity.Text = FormatActivity(totalActivity);
             }
         }
@@ -146,6 +151,15 @@ namespace Grizzlist.Client.Tasks
                 CreateAttachmentNode(node, path, level + 1, attachment);
                 node.ExpandSubtree();
             }
+        }
+
+        private void AddDrawing(Grizzlist.Tasks.Types.Drawing drawing)
+        {
+            DrawingEditorControl editor = new DrawingEditorControl(drawing, true);
+            TabItem tabItem = new TabItem() { Header = drawing.Name };
+
+            tabItem.Content = editor;
+            tcTask.Items.Add(tabItem);
         }
 
         private string FormatActivity(TimeSpan activity)

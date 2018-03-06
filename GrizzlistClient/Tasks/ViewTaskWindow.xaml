@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Grizzlist.Client.Tasks"
         mc:Ignorable="d"
         Title="ViewTaskWindow" Height="500" Width="300" WindowStartupLocation="CenterOwner">
-    <TabControl>
+    <TabControl x:Name="tcTask">
         <TabItem Header="Task">
             <Grid>
                 <Grid.RowDefinitions>
