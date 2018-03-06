@@ -82,13 +82,17 @@
                 </Button.Resources>
             </Button>
             <TextBox Width="20" Margin="2 5" ToolTip="Tool thickness" x:Name="tbThickness" Text="2" />
-            <Button Margin="10 5 2 5" Style="{DynamicResource ImageButton}" ToolTip="Brush">
-                <Image Source="/Resources/brush.png" />
-            </Button>            
-            <Button Margin="0 5" Style="{DynamicResource ImageButton}" ToolTip="Eraser">
-                <Image Source="/Resources/rubber.png" />
-            </Button>
-            <Button Margin="2 5" Style="{DynamicResource ImageButton}" ToolTip="Clear all">
+            <Border Margin="9 4 1 4" BorderThickness="1" BorderBrush="White" x:Name="brBrush">
+                <Button Style="{DynamicResource ImageButton}" ToolTip="Brush" Click="Brush_Click">
+                    <Image Source="/Resources/brush.png" />
+                </Button>
+            </Border>
+            <Border Margin="0 4" BorderThickness="1" BorderBrush="White" x:Name="brEraser">
+                <Button Style="{DynamicResource ImageButton}" ToolTip="Eraser" Click="Eraser_Click">
+                    <Image Source="/Resources/rubber.png" />
+                </Button>
+            </Border>
+            <Button Margin="2 5" Style="{DynamicResource ImageButton}" ToolTip="Clear all" Click="Clear_Click">
                 <Image Source="/Resources/clear.png" />
             </Button>
             <TextBox Width="30" Margin="10 5 2 5" ToolTip="Width (min 100)" x:Name="tbWidth" />
@@ -103,7 +107,7 @@
         </StackPanel>
         <ScrollViewer Grid.Row="4" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <Border Margin="5" BorderThickness="1" BorderBrush="#ABADB3" x:Name="brCanvas">
-                <Canvas Background="White" x:Name="mainCanvas" />
+                <Canvas Background="White" x:Name="mainCanvas" MouseDown="mainCanvas_MouseDown" MouseUp="mainCanvas_MouseUp" MouseMove="mainCanvas_MouseMove" />
             </Border>
         </ScrollViewer>
     </Grid>
