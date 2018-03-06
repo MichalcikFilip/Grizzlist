@@ -58,6 +58,7 @@
     <Reference Include="System.Core" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -78,6 +79,7 @@
     </Compile>
     <Compile Include="Collection\ICollectionManager.cs" />
     <Compile Include="Configure.cs" />
+    <Compile Include="Extensions\BitmapExtension.cs" />
     <Compile Include="Extensions\ColorExtension.cs" />
     <Compile Include="Notifications\NotificationHelper.cs" />
     <Compile Include="Notifications\NotificationsWindow.xaml.cs">
@@ -89,6 +91,9 @@
       <DependentUpon>AttachmentNoteWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tasks\BackgroundActions\TaskArchivingAction.cs" />
+    <Compile Include="Tasks\Drawings\DrawingEditorControl.xaml.cs">
+      <DependentUpon>DrawingEditorControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tasks\Search\Comparers\ComparerFactory.cs" />
     <Compile Include="Tasks\Search\Comparers\Contains.cs" />
     <Compile Include="Tasks\Search\Comparers\Equals.cs" />
@@ -223,6 +228,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tasks\Attachments\AttachmentNoteWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tasks\Drawings\DrawingEditorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -430,6 +439,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\fileIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\size.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\rubber.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\brush.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\clear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\text.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

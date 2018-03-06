@@ -7,84 +7,154 @@
         xmlns:local="clr-namespace:Grizzlist.Client.Tasks"
         mc:Ignorable="d"
         Title="New Task" Height="500" Width="300" WindowStartupLocation="CenterOwner">
-    <TabControl>
-        <TabItem Header="Task">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition Height="35" />
-                </Grid.RowDefinitions>
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="75" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="5" />
-                            <RowDefinition Height="30" />
-                            <RowDefinition Height="90" />
-                            <RowDefinition Height="90" />
-                            <RowDefinition Height="33" />
-                            <RowDefinition Height="33" />
-                            <RowDefinition Height="30" />
-                            <RowDefinition Height="0" x:Name="rowSubtasks" />
-                            <RowDefinition Height="50" />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Label Grid.Column="0" Grid.Row="1" Margin="0 1 0 0" Content="Name" HorizontalAlignment="Right" />
-                        <Label Grid.Column="0" Grid.Row="2" Margin="0 1 0 0" Content="Description" HorizontalAlignment="Right" />
-                        <Label Grid.Column="0" Grid.Row="3" Margin="0 1 0 0" Content="Note" HorizontalAlignment="Right" />
-                        <Label Grid.Column="0" Grid.Row="4" Margin="0 3 0 0" Content="Priority" HorizontalAlignment="Right" />
-                        <Label Grid.Column="0" Grid.Row="5" Margin="0 3 0 0" Content="Deadline" HorizontalAlignment="Right" />
-                        <Label Grid.Column="0" Grid.Row="6" Margin="0 1 0 0" Content="Subtasks" HorizontalAlignment="Right" />
-                        <Label Grid.Column="0" Grid.Row="8" Margin="0 1 0 0" Content="Tags" HorizontalAlignment="Right" />
-                        <TextBox Grid.Column="1" Grid.Row="1" Margin="10 5" x:Name="tbName" />
-                        <TextBox Grid.Column="1" Grid.Row="2" Margin="10 5" x:Name="tbDescription" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" />
-                        <TextBox Grid.Column="1" Grid.Row="3" Margin="10 5" x:Name="tbNote" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" />
-                        <ComboBox  Grid.Column="1" Grid.Row="4" Margin="10 5" x:Name="cbPriority" />
-                        <DatePicker Grid.Column="1" Grid.Row="5" Margin="10 5" x:Name="dpDeadline" />
-                        <Button Grid.Column="1" Grid.Row="6" Margin="10 5" HorizontalAlignment="Left" Style="{DynamicResource ImageButton}" ToolTip="Add Subtask" Click="AddSubtask_Click">
-                            <Image Source="/Resources/addSubtask_24.png" />
-                        </Button>
-                        <Grid Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" x:Name="gridSubtasks">
+    <Grid>
+        <TabControl x:Name="tcTask" Style="{DynamicResource tcTaskStyle}">
+            <TabControl.Resources>
+                <SolidColorBrush x:Key="TabItem.Selected.Background" Color="#FFFFFF"/>
+                <SolidColorBrush x:Key="TabItem.Selected.Border" Color="#ACACAC"/>
+                <Style x:Key="tcTaskStyle" TargetType="{x:Type TabControl}">
+                    <Setter Property="Padding" Value="2"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="Background" Value="{StaticResource TabItem.Selected.Background}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource TabItem.Selected.Border}"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TabControl}">
+                                <Grid x:Name="templateRoot" ClipToBounds="true" SnapsToDevicePixels="true" KeyboardNavigation.TabNavigation="Local">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition x:Name="ColumnDefinition0"/>
+                                        <ColumnDefinition x:Name="ColumnDefinition1" Width="0"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition x:Name="RowDefinition0" Height="Auto"/>
+                                        <RowDefinition x:Name="RowDefinition1" Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TabPanel x:Name="headerPanel" Background="Transparent" Grid.Column="0" IsItemsHost="true" Margin="2,2,24,0" Grid.Row="0" KeyboardNavigation.TabIndex="1" Panel.ZIndex="1"/>
+                                    <Border x:Name="contentPanel" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Column="0" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Row="1" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
+                                        <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="TabStripPlacement" Value="Bottom">
+                                        <Setter Property="Grid.Row" TargetName="headerPanel" Value="1"/>
+                                        <Setter Property="Grid.Row" TargetName="contentPanel" Value="0"/>
+                                        <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                                        <Setter Property="Height" TargetName="RowDefinition1" Value="Auto"/>
+                                        <Setter Property="Margin" TargetName="headerPanel" Value="2,0,2,2"/>
+                                    </Trigger>
+                                    <Trigger Property="TabStripPlacement" Value="Left">
+                                        <Setter Property="Grid.Row" TargetName="headerPanel" Value="0"/>
+                                        <Setter Property="Grid.Row" TargetName="contentPanel" Value="0"/>
+                                        <Setter Property="Grid.Column" TargetName="headerPanel" Value="0"/>
+                                        <Setter Property="Grid.Column" TargetName="contentPanel" Value="1"/>
+                                        <Setter Property="Width" TargetName="ColumnDefinition0" Value="Auto"/>
+                                        <Setter Property="Width" TargetName="ColumnDefinition1" Value="*"/>
+                                        <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                                        <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
+                                        <Setter Property="Margin" TargetName="headerPanel" Value="2,2,0,2"/>
+                                    </Trigger>
+                                    <Trigger Property="TabStripPlacement" Value="Right">
+                                        <Setter Property="Grid.Row" TargetName="headerPanel" Value="0"/>
+                                        <Setter Property="Grid.Row" TargetName="contentPanel" Value="0"/>
+                                        <Setter Property="Grid.Column" TargetName="headerPanel" Value="1"/>
+                                        <Setter Property="Grid.Column" TargetName="contentPanel" Value="0"/>
+                                        <Setter Property="Width" TargetName="ColumnDefinition0" Value="*"/>
+                                        <Setter Property="Width" TargetName="ColumnDefinition1" Value="Auto"/>
+                                        <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                                        <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
+                                        <Setter Property="Margin" TargetName="headerPanel" Value="0,2,2,2"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="false">
+                                        <Setter Property="TextElement.Foreground" TargetName="templateRoot" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Task">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="35" />
+                    </Grid.RowDefinitions>
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="75" />
                                 <ColumnDefinition />
-                                <ColumnDefinition Width="30" />
-                                <ColumnDefinition Width="30" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="5" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="90" />
+                                <RowDefinition Height="90" />
+                                <RowDefinition Height="33" />
+                                <RowDefinition Height="33" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="0" x:Name="rowSubtasks" />
+                                <RowDefinition Height="50" />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
+                            <Label Grid.Column="0" Grid.Row="1" Margin="0 1 0 0" Content="Name" HorizontalAlignment="Right" />
+                            <Label Grid.Column="0" Grid.Row="2" Margin="0 1 0 0" Content="Description" HorizontalAlignment="Right" />
+                            <Label Grid.Column="0" Grid.Row="3" Margin="0 1 0 0" Content="Note" HorizontalAlignment="Right" />
+                            <Label Grid.Column="0" Grid.Row="4" Margin="0 3 0 0" Content="Priority" HorizontalAlignment="Right" />
+                            <Label Grid.Column="0" Grid.Row="5" Margin="0 3 0 0" Content="Deadline" HorizontalAlignment="Right" />
+                            <Label Grid.Column="0" Grid.Row="6" Margin="0 1 0 0" Content="Subtasks" HorizontalAlignment="Right" />
+                            <Label Grid.Column="0" Grid.Row="8" Margin="0 1 0 0" Content="Tags" HorizontalAlignment="Right" />
+                            <TextBox Grid.Column="1" Grid.Row="1" Margin="10 5" x:Name="tbName" />
+                            <TextBox Grid.Column="1" Grid.Row="2" Margin="10 5" x:Name="tbDescription" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" />
+                            <TextBox Grid.Column="1" Grid.Row="3" Margin="10 5" x:Name="tbNote" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" />
+                            <ComboBox  Grid.Column="1" Grid.Row="4" Margin="10 5" x:Name="cbPriority" />
+                            <DatePicker Grid.Column="1" Grid.Row="5" Margin="10 5" x:Name="dpDeadline" />
+                            <Button Grid.Column="1" Grid.Row="6" Margin="10 5" HorizontalAlignment="Left" Style="{DynamicResource ImageButton}" ToolTip="Add Subtask" Click="AddSubtask_Click">
+                                <Image Source="/Resources/addSubtask_24.png" />
+                            </Button>
+                            <Grid Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" x:Name="gridSubtasks">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="30" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                </Grid.RowDefinitions>
+                            </Grid>
+                            <TextBox Grid.Column="1" Grid.Row="8" Margin="10 5" x:Name="tbTags" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
                         </Grid>
-                        <TextBox Grid.Column="1" Grid.Row="8" Margin="10 5" x:Name="tbTags" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
-                    </Grid>
-                </ScrollViewer>
-                <StackPanel Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
-                    <Button Content="Cancel" Margin="5" Padding="20 0" Click="CancelButton_Click" />
-                    <Button Content="OK" Margin="5" Padding="20 0" Click="OkButton_Click" />
-                </StackPanel>
-            </Grid>
-        </TabItem>
-        <TabItem Header="Attachments">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="5" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="1" Margin="5 0" Orientation="Horizontal">
-                    <Button Margin="5" Style="{DynamicResource ImageButton}" ToolTip="Add" Click="AddAttachment_Click">
-                        <Image Source="/Resources/addSubtask_24.png" />
-                    </Button>
-                    <Button Margin="5" Style="{DynamicResource ImageButton}" ToolTip="Remove" Click="RemoveAttachment_Click">
-                        <Image Source="/Resources/remove_24_red.png" />
-                    </Button>
-                    <Button Margin="15 5 5 5" Style="{DynamicResource ImageButton}" ToolTip="Note" Click="UpdateAttachmentNode_Click">
-                        <Image Source="/Resources/note.png" />
-                    </Button>
-                </StackPanel>
-                <TreeView Grid.Row="2" BorderThickness="0" Margin="0 10 0 0" x:Name="tvAttachments" />
-            </Grid>
-        </TabItem>
-    </TabControl>
+                    </ScrollViewer>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+                        <Button Content="Cancel" Margin="5" Padding="20 0" Click="CancelButton_Click" />
+                        <Button Content="OK" Margin="5" Padding="20 0" Click="OkButton_Click" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Attachments">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1" Margin="5 0" Orientation="Horizontal">
+                        <Button Margin="5" Style="{DynamicResource ImageButton}" ToolTip="Add" Click="AddAttachment_Click">
+                            <Image Source="/Resources/addSubtask_24.png" />
+                        </Button>
+                        <Button Margin="5" Style="{DynamicResource ImageButton}" ToolTip="Remove" Click="RemoveAttachment_Click">
+                            <Image Source="/Resources/remove_24_red.png" />
+                        </Button>
+                        <Button Margin="15 5 5 5" Style="{DynamicResource ImageButton}" ToolTip="Note" Click="UpdateAttachmentNode_Click">
+                            <Image Source="/Resources/note.png" />
+                        </Button>
+                    </StackPanel>
+                    <TreeView Grid.Row="2" BorderThickness="0" Margin="0 10 0 0" x:Name="tvAttachments" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Image Width="16" Height="16" Margin="4" VerticalAlignment="Top" HorizontalAlignment="Right" Source="/Resources/drawing.png" ToolTip="Add drawing" MouseLeftButtonDown="AddDrawing_MouseLeftButtonDown" />
+    </Grid>
 </v:ValidatableWindow>
